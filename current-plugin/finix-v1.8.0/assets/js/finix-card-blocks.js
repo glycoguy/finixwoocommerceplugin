@@ -20,9 +20,10 @@
     const defaultLabel = __('Credit/Debit Card', 'finix-wc-subs');
     const label = decodeEntities(settings.title || '') || defaultLabel;
 
-    // Global Finix form instance
+    // Global Finix form instance (reset on each payment method switch)
     let finixCardForm = null;
     let fraudSessionId = '';
+    let isFormInitialized = false;
 
     /**
      * Get Finix form options
@@ -88,16 +89,29 @@
             return;
         }
 
-        // Initialize Card form
-        if (cardFormContainer && cardFormContainer.innerHTML === '' && !finixCardForm) {
+        // Initialize Card form (allow reinitialize if form was cleared)
+        if (cardFormContainer && !isFormInitialized) {
             try {
+                // Clear the container first to ensure clean state
+                cardFormContainer.innerHTML = '';
+
                 finixCardForm = window.Finix.CardTokenForm(gatewayId + '-card-form', getFinixFormOptions());
+                isFormInitialized = true;
                 console.log('Finix Card form initialized for blocks');
             } catch (error) {
                 console.error('Failed to initialize Finix Card form:', error);
                 setTimeout(() => initializeFinixCardForm(gatewayId, retryCount + 1), 500);
             }
         }
+    }
+
+    /**
+     * Cleanup form when payment method changes
+     */
+    function cleanupFinixCardForm() {
+        finixCardForm = null;
+        isFormInitialized = false;
+        console.log('Finix Card form cleaned up');
     }
 
     /**
@@ -140,7 +154,11 @@
                 setIsInitialized(true);
             }, 500);
 
-            return () => clearTimeout(timer);
+            // Cleanup on unmount (when payment method changes)
+            return () => {
+                clearTimeout(timer);
+                cleanupFinixCardForm();
+            };
         }, []);
 
         // Register payment processing event

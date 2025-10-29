@@ -20,9 +20,10 @@
     const defaultLabel = __('Bank Account (EFT)', 'finix-wc-subs');
     const label = decodeEntities(settings.title || '') || defaultLabel;
 
-    // Global Finix form instance
+    // Global Finix form instance (reset on each payment method switch)
     let finixBankForm = null;
     let fraudSessionId = '';
+    let isFormInitialized = false;
 
     /**
      * Get Finix form options
@@ -88,16 +89,29 @@
             return;
         }
 
-        // Initialize Bank form
-        if (bankFormContainer && bankFormContainer.innerHTML === '' && !finixBankForm) {
+        // Initialize Bank form (allow reinitialize if form was cleared)
+        if (bankFormContainer && !isFormInitialized) {
             try {
+                // Clear the container first to ensure clean state
+                bankFormContainer.innerHTML = '';
+
                 finixBankForm = window.Finix.BankTokenForm(gatewayId + '-bank-form', getFinixFormOptions());
+                isFormInitialized = true;
                 console.log('Finix Bank form initialized for blocks');
             } catch (error) {
                 console.error('Failed to initialize Finix Bank form:', error);
                 setTimeout(() => initializeFinixBankForm(gatewayId, retryCount + 1), 500);
             }
         }
+    }
+
+    /**
+     * Cleanup form when payment method changes
+     */
+    function cleanupFinixBankForm() {
+        finixBankForm = null;
+        isFormInitialized = false;
+        console.log('Finix Bank form cleaned up');
     }
 
     /**
@@ -140,7 +154,11 @@
                 setIsInitialized(true);
             }, 500);
 
-            return () => clearTimeout(timer);
+            // Cleanup on unmount (when payment method changes)
+            return () => {
+                clearTimeout(timer);
+                cleanupFinixBankForm();
+            };
         }, []);
 
         // Register payment processing event

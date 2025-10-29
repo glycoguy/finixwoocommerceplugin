@@ -260,12 +260,17 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
      * Process Payment
      */
     public function process_payment($order_id) {
+        Finix_Logger::info("=== Starting payment processing for order #{$order_id} ===");
+
         $order = wc_get_order($order_id);
 
         if (!$order) {
+            Finix_Logger::error("Invalid order ID: {$order_id}");
             wc_add_notice(__('Payment error: Invalid order.', 'finix-wc-subs'), 'error');
             return array('result' => 'fail');
         }
+
+        Finix_Logger::info("Order #{$order_id} loaded successfully. Gateway: {$this->id}");
 
         try {
             // Get API instance
@@ -276,20 +281,49 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
                 $this->testmode
             );
 
+            Finix_Logger::info("API instance created. Test mode: " . ($this->testmode ? 'YES' : 'NO'));
+
             // Get token from POST data (supports both classic checkout and blocks checkout)
             $gateway_id = $this->id;
+
+            // Log all POST data for debugging (sanitized)
+            Finix_Logger::debug("POST data keys available: " . implode(', ', array_keys($_POST)));
 
             // Try to get from direct POST first (classic checkout)
             $instrument_id = isset($_POST[$gateway_id . '_token']) ? sanitize_text_field($_POST[$gateway_id . '_token']) : '';
 
+            if (!empty($instrument_id)) {
+                Finix_Logger::info("Token found in POST data: {$instrument_id}");
+            } else {
+                Finix_Logger::info("Token NOT found in POST[{$gateway_id}_token]");
+            }
+
             // If not found, try from order meta (blocks checkout stores it there)
             if (empty($instrument_id)) {
-                $instrument_id = $order->get_meta('_' . $gateway_id . '_token', true);
+                $meta_key = '_' . $gateway_id . '_token';
+                $instrument_id = $order->get_meta($meta_key, true);
+
+                if (!empty($instrument_id)) {
+                    Finix_Logger::info("Token found in order meta[{$meta_key}]: {$instrument_id}");
+                } else {
+                    Finix_Logger::error("Token NOT found in order meta[{$meta_key}]");
+
+                    // Log all order meta for debugging
+                    $all_meta = $order->get_meta_data();
+                    $meta_keys = array();
+                    foreach ($all_meta as $meta) {
+                        $meta_keys[] = $meta->key;
+                    }
+                    Finix_Logger::debug("Available order meta keys: " . implode(', ', $meta_keys));
+                }
             }
 
             if (empty($instrument_id)) {
+                Finix_Logger::error("Payment token is missing after checking both POST and order meta");
                 throw new Exception(__('Payment token is missing. Please try again.', 'finix-wc-subs'));
             }
+
+            Finix_Logger::info("Final instrument ID: {$instrument_id}");
 
             // Save payment instrument ID for subscriptions
             $order->update_meta_data('_finix_instrument_id', $instrument_id);
@@ -353,6 +387,9 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
             );
 
         } catch (Exception $e) {
+            Finix_Logger::error("Payment processing exception: " . $e->getMessage());
+            Finix_Logger::error("Exception trace: " . $e->getTraceAsString());
+
             wc_add_notice(__('Payment error: ', 'finix-wc-subs') . $e->getMessage(), 'error');
             return array(
                 'result' => 'fail'
@@ -621,34 +658,62 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
      * Saves payment data from WooCommerce Blocks to order meta
      */
     public function process_blocks_payment_data($context, $result) {
+        Finix_Logger::info("=== process_blocks_payment_data called ===");
+        Finix_Logger::info("Payment method: " . ($context->payment_method ?? 'NOT SET'));
+        Finix_Logger::info("Gateway ID: {$this->id}");
+
         if (!isset($context->payment_data)) {
+            Finix_Logger::error("payment_data not set in context");
+            Finix_Logger::debug("Context properties: " . implode(', ', array_keys((array)$context)));
             return;
         }
 
         $payment_data = $context->payment_data;
         $order = $context->order;
 
+        Finix_Logger::info("Order ID: " . $order->get_id());
+        Finix_Logger::debug("Payment data keys received: " . implode(', ', array_keys($payment_data)));
+
+        // Log the full payment data for debugging
+        Finix_Logger::debug("Full payment data: " . print_r($payment_data, true));
+
         // Only process if this is our gateway
         if ($context->payment_method !== $this->id) {
+            Finix_Logger::info("Skipping - not our gateway (expected: {$this->id}, got: {$context->payment_method})");
             return;
         }
 
+        Finix_Logger::info("Processing payment data for our gateway");
+
         // Save token to order meta
-        if (isset($payment_data[$this->id . '_token'])) {
-            $order->update_meta_data('_' . $this->id . '_token', sanitize_text_field($payment_data[$this->id . '_token']));
+        $token_key = $this->id . '_token';
+        if (isset($payment_data[$token_key])) {
+            $token_value = sanitize_text_field($payment_data[$token_key]);
+            $order->update_meta_data('_' . $token_key, $token_value);
+            Finix_Logger::info("Saved token to order meta: {$token_value}");
+        } else {
+            Finix_Logger::error("Token not found in payment_data[{$token_key}]");
         }
 
         // Save fraud session ID
-        if (isset($payment_data[$this->id . '_fraud_session_id'])) {
-            $order->update_meta_data('_' . $this->id . '_fraud_session_id', sanitize_text_field($payment_data[$this->id . '_fraud_session_id']));
+        $fraud_key = $this->id . '_fraud_session_id';
+        if (isset($payment_data[$fraud_key])) {
+            $fraud_value = sanitize_text_field($payment_data[$fraud_key]);
+            $order->update_meta_data('_' . $fraud_key, $fraud_value);
+            Finix_Logger::info("Saved fraud session ID to order meta");
+        } else {
+            Finix_Logger::info("Fraud session ID not found in payment_data[{$fraud_key}]");
         }
 
         // Save custom description
         if (isset($payment_data['finix_custom_description'])) {
-            $order->update_meta_data('_finix_custom_description_temp', sanitize_text_field($payment_data['finix_custom_description']));
+            $desc_value = sanitize_text_field($payment_data['finix_custom_description']);
+            $order->update_meta_data('_finix_custom_description_temp', $desc_value);
+            Finix_Logger::info("Saved custom description to order meta");
         }
 
         $order->save();
+        Finix_Logger::info("Order meta saved successfully");
     }
 
     /**
