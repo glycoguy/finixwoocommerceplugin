@@ -130,6 +130,16 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
                 'description' => __('If enabled, this gateway will only appear when the cart contains subscription products.', 'finix-wc-subs'),
                 'desc_tip'    => true,
             ),
+            'debug' => array(
+                'title'       => __('Debug Mode', 'finix-wc-subs'),
+                'type'        => 'checkbox',
+                'label'       => __('Enable custom debug logging (bypasses wp-debug.log)', 'finix-wc-subs'),
+                'default'     => 'no',
+                'description' => sprintf(
+                    __('Logs Finix plugin activity (PHP errors and JavaScript console) to a separate file. View logs at WooCommerce > Finix Debug Log. Log file location: %s', 'finix-wc-subs'),
+                    '<code>' . wp_upload_dir()['basedir'] . '/finix-debug.log</code>'
+                ),
+            ),
             'test_mode_section' => array(
                 'title'       => __('Test Mode', 'finix-wc-subs'),
                 'type'        => 'title',

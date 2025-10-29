@@ -1,0 +1,36 @@
+#!/bin/bash
+
+###############################################################################
+# SFTP Configuration Template
+#
+# Copy this file to: sftp-config.sh
+# Then fill in your Flywheel SFTP credentials
+#
+# DO NOT commit sftp-config.sh to git (it contains passwords)
+###############################################################################
+
+# Flywheel SFTP credentials
+# Get these from: Flywheel Dashboard > Your Site > SFTP
+SFTP_HOST="your-site.flywheelsites.com"
+SFTP_USER="your-site-12345"
+SFTP_PASS="your-sftp-password-here"
+SFTP_PORT="2222"
+
+# Remote WordPress paths
+REMOTE_WP_PATH="/www/wp-content/plugins"
+REMOTE_UPLOADS_PATH="/www/wp-content/uploads"
+
+###############################################################################
+# How to get your Flywheel SFTP credentials:
+#
+# 1. Log into Flywheel (getflywheel.com)
+# 2. Click on your site
+# 3. Go to "SFTP/SSH" tab
+# 4. Copy the following:
+#    - Host (e.g., your-site.flywheelsites.com)
+#    - Username (e.g., your-site-12345)
+#    - Password (click "Show" to reveal)
+#    - Port (usually 2222)
+#
+# 5. Paste them into sftp-config.sh (copy this file first)
+###############################################################################

@@ -1,0 +1,6 @@
+# SFTP credentials (contains passwords)
+sftp-config.sh
+
+# Temporary files
+*.tmp
+*.log

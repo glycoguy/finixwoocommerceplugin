@@ -3,7 +3,7 @@
  * Plugin Name: Finix WooCommerce Subscriptions
  * Plugin URI: https://3riversbiotech.com
  * Description: Custom payment gateway integrating Finix payment processing with WooCommerce Subscriptions for Canadian customers
- * Version: 1.8.0
+ * Version: 1.8.1
  * Author: KevinM
  * Author URI: https://3riversbiotech.com
  * Text Domain: finix-wc-subs
@@ -14,6 +14,7 @@
  * WC tested up to: 8.5
  *
  * Changelog:
+ * Version 1.8.1 - TESTING ENHANCEMENT: Added custom logger with JavaScript console capture to bypass wp-debug memory issues
  * Version 1.8.0 - MAJOR REFACTOR: Two-gateway architecture (card/bank) matching official Finix plugin pattern, fixed blocks checkout, subscription support
  * Version 1.7.2 - CRITICAL FIX: Fixed payment data field name mismatch causing 400 error in blocks checkout
  * Version 1.7.1 - Rebuilt JavaScript to match official Finix plugin approach using Finix.CardTokenForm and Finix.BankTokenForm
@@ -31,7 +32,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('FINIX_WC_SUBS_VERSION', '1.8.0');
+define('FINIX_WC_SUBS_VERSION', '1.8.1');
 define('FINIX_WC_SUBS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FINIX_WC_SUBS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('FINIX_WC_SUBS_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -60,6 +61,8 @@ function finix_wc_subs_init_gateway() {
     }
 
     // Include required files
+    require_once FINIX_WC_SUBS_PLUGIN_DIR . 'includes/class-finix-logger.php';
+    require_once FINIX_WC_SUBS_PLUGIN_DIR . 'includes/class-finix-logger-endpoint.php';
     require_once FINIX_WC_SUBS_PLUGIN_DIR . 'includes/class-finix-tags.php';
     require_once FINIX_WC_SUBS_PLUGIN_DIR . 'includes/class-finix-api.php';
 
@@ -85,6 +88,12 @@ function finix_wc_subs_init_gateway() {
 
     // Add the gateways to WooCommerce
     add_filter('woocommerce_payment_gateways', 'finix_wc_subs_add_gateway');
+
+    // Initialize logger endpoint
+    Finix_Logger_Endpoint::init();
+
+    // Enqueue console logger on checkout and cart pages
+    add_action('wp_enqueue_scripts', 'finix_wc_subs_enqueue_console_logger');
 }
 
 /**
@@ -162,4 +171,41 @@ register_deactivation_hook(__FILE__, 'finix_wc_subs_deactivation');
 
 function finix_wc_subs_deactivation() {
     flush_rewrite_rules();
+}
+
+/**
+ * Enqueue console logger script on checkout pages
+ */
+function finix_wc_subs_enqueue_console_logger() {
+    // Only load on checkout, cart, and order-pay pages
+    if (!is_checkout() && !is_cart() && !is_wc_endpoint_url('order-pay')) {
+        return;
+    }
+
+    // Check if logging is enabled
+    $card_settings = get_option('woocommerce_finix_gateway_settings', array());
+    $bank_settings = get_option('woocommerce_finix_bank_gateway_settings', array());
+
+    $debug_enabled = (
+        (!empty($card_settings['debug']) && $card_settings['debug'] === 'yes') ||
+        (!empty($bank_settings['debug']) && $bank_settings['debug'] === 'yes')
+    );
+
+    if (!$debug_enabled) {
+        return;
+    }
+
+    wp_enqueue_script(
+        'finix-console-logger',
+        FINIX_WC_SUBS_PLUGIN_URL . 'assets/js/finix-console-logger.js',
+        array('jquery'),
+        FINIX_WC_SUBS_VERSION,
+        true
+    );
+
+    wp_localize_script('finix-console-logger', 'finixConsoleLogger', array(
+        'enabled' => '1',
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('finix_logging'),
+    ));
 }
