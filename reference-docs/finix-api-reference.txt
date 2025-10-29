@@ -1,0 +1,1382 @@
+# Finix API Reference
+
+---
+seo:
+    title: Finix API Reference
+    description: API Reference Documentation for the Finix API. Includes sample API requests and responses.
+---
+
+The Finix API is resource oriented, relying heavily on common REST principles. Our API uses JSON encoded requests and responses.
+
+You will receive separate Sandbox and Live accounts, as well as corresponding API credentials to access the Finix API.
+
+---
+
+## Authentication
+
+To communicate with the Finix API, you must authenticate your requests via HTTP Basic Authentication with a `username:password` combination, which you can get from your Finix Dashboard. If you do not have a Dashboard yet, you can test our APIs with the Sandbox credentials below.
+
+{% table %}
+
+-   Parameter
+-   Value
+
+---
+
+-   Sandbox Username
+-   `USsRhsHYZGBPnQw8CByJyEQW`
+
+---
+
+-   Sandbox Password
+-   `8a14c2f9-d94b-4c72-8f5c-a62908e5b30e`
+
+{% /table %}
+
+```shell {% title="Request Format" %}
+curl "https://finix.sandbox-payments-api.com/" \
+    -H "Content-Type: application/json" \
+    -H "Finix-Version: 2022-02-01" \
+    -u USsRhsHYZGBPnQw8CByJyEQW:8a14c2f9-d94b-4c72-8f5c-a62908e5b30e
+```
+
+---
+
+## Environments
+
+Finix provides two environments with distinct base URLs to make API requests.
+
+1. A Sandbox environment for developing and testing your integration.
+2. A Live environment for processing payments.
+
+These environments are entirely separate and do not share API Credentials.
+
+{% table %}
+
+-   Environment
+-   Endpoint URL
+
+---
+
+-   Sandbox
+-   `https://finix.sandbox-payments-api.com`
+
+---
+
+-   Live
+-   `https://finix.live-payments-api.com`
+
+{% /table %}
+
+{% admonition type="info" name="Live Access" %}
+To get access to the Live environment, please reach out to your Finix point-of-contact.
+{% /admonition %}
+
+---
+
+## HTTP Codes and Errors
+
+Finix uses HTTP codes to communicate whether requests succeeded or failed. Requests to Finix's API return responses within less than one second.
+
+However, communications between card networks and processors can increase response latency. Additionally, response latency for card-present devices can be higher depending on how quickly buyers complete the transaction on payment terminals.
+
+Due of this, requests to the Finix API have a maximum timeout of 5 minutes.
+
+For more details, see [Error Codes](/additional-resources/developers/implementation-and-testing/error-codes/). Also, you can [test for specific errors and responses](/additional-resources/developers/implementation-and-testing/testing-your-integration/).
+
+{% table %}
+
+-   Code {% width="10%" %}
+-   Definition {% width="35%" %}
+-   Explanation {% width="55%" %}
+
+---
+
+-   `400`
+-   Bad Request
+-   We could not parse your request. Verify you are providing valid JSON.
+
+---
+
+-   `401`
+-   Unauthorized
+-   We could not authenticate your request. Verify your `username` and `password` are correct.
+
+---
+
+-   `402`
+-   Upstream Processor Error
+-   Errors caused by 3rd-party service(s).
+
+---
+
+-   `403`
+-   Forbidden
+-   Your credentials do not have the correct permissions to perform the request.
+
+---
+
+-   `404`
+-   Not Found
+-   We could not find the specified resource.
+
+---
+
+-   `405`
+-   Method Not Allowed
+-   The specified resource does not support the HTTP Method used to submit the request.
+
+---
+
+-   `406`
+-   Not Acceptable
+-   The server could accept the submitted request. Confirm how the request was formatted and submitted.
+
+---
+
+-   `409`
+-   Conflict
+-   The submitted request conflicts with the current state of the server.
+
+---
+
+-   `422`
+-   Unprocessable Entity
+-   The parameters were valid, but the request failed. Usually, the error involves misunderstanding of how to perform the request (e.g., creating a transfer with a seller that is not-yet-approved).
+
+---
+
+-   `500`
+-   Internal Server Error
+-   We had a problem with our server. Try again later.
+
+{% /table %}
+
+---
+
+## Idempotent Requests
+
+The `Authorization` and `Transfer` resources both have an `idempotency_id` field. Use this field to ensure the API Request is performed **_only once_**.
+
+Why is this important? We've all experienced a checkout page that hangs on a request or payment, and feared that if we refresh or submit the payment again, we'd be charged twice.
+
+Finix removes this ambiguity with the `idempotency_id`. You or the user can generate a unique ID that can be included as an `idempotency_id` with the usual request payload. If anyone attempts a request with the same `idempotency_id`, the response will raise an exception.
+
+By passing an `idempotency_id` in the body of your requests, you can be rest assured that when you create an `Authorization` or `Transfer`, the user will be protected from potential network issues.
+
+`idempotency_id` is available on the following three endpoints:
+
+-   `/transfers`
+-   `/authorizations`
+-   `/transfers/{id}/reversals`
+
+{% admonition type="warning" name="`idempotency_id` scope" %}
+`idempotency_id` checks against previous requests made on the same endpoint.
+{% /admonition %}
+
+---
+
+## Query Parameters
+
+Every Finix resource (e.g., `Authorizations`, `Transfers`) can be listed and reviewed using `GET` requests. Additionally, every endpoint has query parameters available to help you filter the resources that are returned.
+
+See the following example of how to query the `Transfers` endpoint for `Transfer` resources with `type: DEBIT`.
+
+```shell {% title="Query Parameter Example" %}
+curl "https://finix.sandbox-payments-api.com/transfers?type=DEBIT" \
+    -H "Finix-Version: 2022-02-01" \
+    -u USsRhsHYZGBPnQw8CByJyEQW:8a14c2f9-d94b-4c72-8f5c-a62908e5b30e
+```
+
+---
+
+## Tags
+
+All Finix resources (e.g., `Authorization`, `Transfer`) let you include `tags` to add key-value metadata to your Finix API resources. For example, when creating a Transfer, you might include `customerId: Customer123` to tag the Transfer with your internal customer ID. You can update tags as many times as needed, as well as filter resources by tags.
+
+```json {% title="Tags Example" %}
+{
+    ...,
+    "tags": {
+        "card-type": "business card",
+        "order_number": "H-1257",
+        "customer_order_reference": "order1234",
+        "item_type": "hardware",
+        "vendor": "finix"
+    }
+}
+```
+
+The `tags` object accepts up to 50 `key: value` pairs to annotate resources with custom metadata.
+
+-   Maximum character length for individual `keys` is 40.
+-   Maximum character length for individual `values` is 500.
+
+{% admonition type="warning" name="Special Characters" %}
+Finix does **_not_** allow special characters on tags (e.g., `\`, `,`, `"`, `'`)
+{% /admonition %}
+
+---
+
+## Versioning
+
+As Finix improves our products and features, we will make changes to our APIs. When breaking changes are made to Finix's API, we may release a new dated API version.
+
+The API version your requests use controls how API responses and webhooks behave (for example, the values you see in responses and the parameters you can include in requests). For more information, see [Versioning](/additional-resources/developers/authentication-and-api-basics/versioning/).
+
+<br/>
+
+---
+
+## Postman Collection
+
+Finix has a Postman collection to help in your development. You can fork it using the button below.
+
+[<img id="postman-btn" src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/47694266-26c1778a-64ad-473d-ba6f-440777f2c9c8?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D47694266-26c1778a-64ad-473d-ba6f-440777f2c9c8%26entityType%3Dcollection%26workspaceId%3D72d1f1c9-5637-4a7f-be9b-25fc89a3a2ff)
+
+
+
+Version: 2022-02-01
+
+## Servers
+
+Sandbox server
+```
+https://finix.sandbox-payments-api.com
+```
+
+Production server
+```
+https://finix.live-payments-api.com
+```
+
+## Security
+
+### BasicAuth
+
+Type: http
+Scheme: basic
+
+## Download OpenAPI description
+
+[Finix API Reference](https://docs.finix.com/_spec/api/index.yaml)
+
+## Authorizations
+
+An `Authorization` (also known as a card hold) reserves a specific amount on a card to be captured (i.e. debited) at a later date, usually within seven days. When an `Authorization` is captured it produces a `Transfer` resource. <br/><br/> Related Guides: [Auth and Captures](/guides/online-payments/payment-features/auth-and-captures), [Level 2 and 3 Processing](/guides/online-payments/payment-features/level-2-level-3-processing/), [POS Integration](/guides/in-person-payments/building-your-integration/pos-integration), [Buyer Charges](/guides/online-payments/payment-features/buyer-charges/)
+
+
+### Create an Authorization
+
+ - [POST /authorizations](https://docs.finix.com/api/authorizations/createauthorization.md): Create an  to process a transaction.
+
+Related Guides: Creating and Capturing an Authorization, Level 2 and 3 Processing, POS Integration, Buyer Charges
+
+### List Authorizations
+
+ - [GET /authorizations](https://docs.finix.com/api/authorizations/listauthorizations.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch an Authorization
+
+ - [GET /authorizations/{authorization_id}](https://docs.finix.com/api/authorizations/getauthorization.md): Retrieve the details of a previously created .
+
+### Capture an Authorization
+
+ - [PUT /authorizations/{authorization_id}](https://docs.finix.com/api/authorizations/captureauthorization.md): Use a PUT request to capture an . If captured successfully, the  field of the  will contain the ID of the  resource that moves funds.
+
+Related Guides: Creating and Capturing an Authorization, Level 2 and 3 Processing, POS Integration, Buyer Charges
+
+### Void an Authorization
+
+ - [PUT /authorizations/{authorization_id_void_to}](https://docs.finix.com/api/authorizations/voidauthorization.md): Use a PUT request to void an . If voided successfully, funds get released, and the transaction is incomplete. Additionally, a voided  can no longer be captured. Depending on the cardholder’s issuing bank, voids can take up to seven days to remove the  hold.
+
+Related Guides: Creating and Capturing an Authorization, Level 2 and 3 Processing, POS Integration, Buyer Charges
+
+## Compliance Forms
+
+To process payments, your Merchants must validate their compliance with PCI DSS requirements annually. To do this, your Merchants must attest to PCI Self-Assessment Questionnaire (SAQ) compliance forms. <br/><br/> Related Guides: [Managing PCI Compliance](/guides/managing-operations/security-compliance/managing-pci-compliance), [PCI DSS Compliance](/guides/managing-operations/security-compliance/managing-pci-compliance)
+
+
+### Fetch a Compliance Form
+
+ - [GET /compliance_forms/{compliance_form_id}](https://docs.finix.com/api/compliance-forms/getcomplianceform.md): Finix will deliver a webhook when we create a new  for your Merchant. Use the webhook to fetch the  from the  endpoint.
+
+### Complete a Compliance Form
+
+ - [PUT /compliance_forms/{compliance_form_id}](https://docs.finix.com/api/compliance-forms/updatecomplianceform.md): As part of onboarding, your Merchants need to review and agree to their . Afterward, you need to update their  with details about their digital signature. Finix will update their  with those details, along with a reference to the new  with their digital signature.
+
+For more information, see Managing Compliance Forms.
+
+### List Compliance Forms
+
+ - [GET /compliance_forms](https://docs.finix.com/api/compliance-forms/listcomplianceforms.md): Get all  linked to your Merchants.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+## Devices
+
+A `Device` resource represents a Point-of-Sale terminal. `Devices` are used for [In-Person transactions](/guides/in-person-payments).
+
+
+### List Devices
+
+ - [GET /devices](https://docs.finix.com/api/devices/listdevices.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Device
+
+ - [GET /devices/{device_id}](https://docs.finix.com/api/devices/getdevice.md): Retrieve the details of an existing .
+
+### Update Device
+
+ - [PUT /devices/{device_id}](https://docs.finix.com/api/devices/updatedevice.md): You can either update the configuration of a device or take an action on the device
+
+Terminals must be online and connected to the network in order for the request to be successful.
+
+You can initiate an action on a . Actions supported vary by gateway.
+
+FINIX_V1 and DUMMY_V1 terminals support the following actions:
+-  - Activate the device to enable processing
+-  - Deactivate the device to disable processing
+-  - Cancel any active transaction and return to the idle screen
+
+DATACAP_V1 terminals support the following actions:
+-  - Activate the device to enable processing
+-  - Deactivate the device to disable processing
+
+TRIPOS_CLOUD_V1 terminals support following actions:
+-  - Activate the device to enable processing
+-  - Deactivate the device to disable processing
+-  - Update the idle message content on the terminal
+-  - Remotely reboot the terminal
+
+You can also use a PUT request to update the , , , and  of the . Functionality varies by gateway/device. 
+
+### Check Device Connection
+
+ - [GET /devices/{device_id_connection}](https://docs.finix.com/api/devices/getdeviceconnection.md): To check the connection of the , include  at the end of the request endpoint.
+
+### List Device Metrics
+
+ - [GET /devices/{device_id}/device_metrics](https://docs.finix.com/api/devices/listdevicemetrics.md): Finix collects and analyzes data from payment devices and terminals to generate logs, known as  objects. Each  log provides insights into device health, network connectivity, and payment processing performance.
+
+Use this endpoint to retrieve a device's  logs.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Create a Device
+
+ - [POST /merchants/{merchant_id}/devices](https://docs.finix.com/api/devices/createmerchantdevice.md): Create a  under a .
+
+## Disputes
+
+`Disputes`, also known as chargebacks, represent any customer-disputed charges. A core part of the dispute lifecycle is the ability for a `Merchant` to upload `Dispute` evidence that supports their side of the `Dispute`. <br/><br/> Related Guides: [Managing Disputes](/guides/after-the-payment/disputes)
+
+
+### List Disputes
+
+ - [GET /disputes](https://docs.finix.com/api/disputes/listdisputes.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Dispute
+
+ - [GET /disputes/{dispute_id}](https://docs.finix.com/api/disputes/getdispute.md): Retrieve the details of a previously created .
+
+### Update a Dispute
+
+ - [PUT /disputes/{dispute_id}](https://docs.finix.com/api/disputes/updatedispute.md): Update  on .
+
+### Upload Files as Dispute Evidence
+
+ - [POST /disputes/{dispute_id}/evidence](https://docs.finix.com/api/disputes/createdisputeevidence.md): Upload a file as evidence for a .
+
+- You can upload up to 8 files; the total size of the uploaded files combined cannot exceed 10 MB.
+- The allowed file formats include JPEG, PDF, PNG.
+- Individual JPEG, PDF, PNG files can't exceed 1 MB.
+- PNG files will be automatically converted and returned as JPEG files. 
+
+### List Dispute Evidence
+
+ - [GET /disputes/{dispute_id}/evidence](https://docs.finix.com/api/disputes/listdisputeevidence.md): Retrieve a list of dispute evidence for a .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.      
+
+### Fetch Dispute Evidence
+
+ - [GET /disputes/{dispute_id}/evidence/{evidence_id}](https://docs.finix.com/api/disputes/getdisputeevidence.md): Fetch evidence uploaded for a . 
+
+If you don't have the Finix Dashboard available, you can fetch the evidence to review the  of the upload to confirm the evidence got sent to the processor.
+
+### Update Dispute Evidence
+
+ - [PUT /disputes/{dispute_id}/evidence/{evidence_id}](https://docs.finix.com/api/disputes/updatedisputeevidence.md): Update tags on  evidence.
+
+### List Dispute Adjustment Transfers
+
+ - [GET /disputes/{dispute_id}/adjustment_transfers](https://docs.finix.com/api/disputes/listdisputesadjustments.md): List the adjustment  for a . Depending on the stage of the , different adjustment  subtypes can be applied.
+
+There are four available subtypes for adjustment  in : PLATFORM\_CREDITMERCHANT\_DEBITMERCHANT\_CREDITPLATFORM\_DEBIT
+
+### Submit Dispute Evidence
+
+ - [POST /disputes/{dispute_id}/submit](https://docs.finix.com/api/disputes/submitdisputeevidence.md): You can manually submit evidence to the issuing bank to manually move a dispute forward. Use the  endpoint to submit evidence. Making a POST request lets the issuing bank know the seller has completed submitting evidence and is prepared to move forward with the dispute.
+
+Related guides: Responding to Disputes.
+
+### Accept a Dispute
+
+ - [POST /disputes/{dispute_id}/accept](https://docs.finix.com/api/disputes/acceptdispute.md): You can accept a  to prevent a long (and potentially expensive) process. When you accept a , you concede that the Dispute is not worth challenging or representing.
+
+Related guides: Accepting a Dispute
+
+
+### Download Dispute Evidence
+
+ - [GET /disputes/{dispute_id}/evidence/{evidence_id}/download](https://docs.finix.com/api/disputes/downloaddisputeevidence.md): Download a file uploaded as .
+
+: The file extension included in  must match the extension of the original uploaded file.
+
+## Fees
+
+A `Fee` is a charge levied against a `Merchant`. It represents how a platform charges its sellers for all various types of Fees. Payment transactions generate `Fee` resources.
+
+
+### List Fees
+
+ - [GET /fees](https://docs.finix.com/api/fees/listfees.md): Retrieve a list of  resources. As a query parameter, pass the ID of the  or  that generated the .
+
+### Create a Fee
+
+ - [POST /fees](https://docs.finix.com/api/fees/createfee.md): Create a custom (i.e. one-time) .
+
+### Fetch a Fee
+
+ - [GET /fees/{fee_id}](https://docs.finix.com/api/fees/getfee.md): Retrieve the details of a .
+
+### Update Fee
+
+ - [PUT /fees/{fee_id}](https://docs.finix.com/api/fees/updatefee.md): Update the details of a .
+
+## Fee Profiles
+
+A `fee_profiles` represents a pricing scheme that automatically applies fees to each transaction. Changes to `fee_profiles` go into effect immediately. <br/><br/> Related Guides: 
+  - [Collecting Fees](../guides/platform-payments/monetizing-payments/collecting-seller-fees)
+
+
+### List Fee Profiles
+
+ - [GET /fee_profiles](https://docs.finix.com/api/fee-profiles/listfeeprofiles.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Create a Fee Profile
+
+ - [POST /fee_profiles](https://docs.finix.com/api/fee-profiles/createfeeprofile.md): Create a .
+
+### Fetch a Fee Profile
+
+ - [GET /fee_profiles/{fee_profile_id}](https://docs.finix.com/api/fee-profiles/getfeeprofile.md): Get a .
+
+## Files
+
+Use Finix's File API to upload and manage files for your merchants. <br/><br/> Related Guides: [File Uploads](/guides/platform-payments/onboarding-sellers/seller-onboarding-uploading-files.md), [Update Requests](/guides/platform-payments/onboarding-sellers/seller-onboarding-update-requests.md)
+
+
+### Create a File
+
+ - [POST /files](https://docs.finix.com/api/files/createfiles.md): Before uploading a file, you need to create a  resource. 
+
+Once created, you can upload your file to the new  resource.
+
+### List all Files
+
+ - [GET /files](https://docs.finix.com/api/files/listfiles.md): Retrieve a list of previously created . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a File
+
+ - [GET /files/{file_id}](https://docs.finix.com/api/files/getfile.md): Retrieve the details of a  resource.
+
+### List all External Links
+
+ - [GET /files/{file_id}/external_links](https://docs.finix.com/api/files/listexternallinks.md): List the previously created  for a .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Create an External Link
+
+ - [POST /files/{file_id}/external_links](https://docs.finix.com/api/files/createexternallink.md): Create an  resource to share with users so they can upload files directly from their browser. For more info, see Uploading files to Finix.
+
+### Upload files directly
+
+ - [POST /files/{file_id}/upload](https://docs.finix.com/api/files/uploadfile.md): Upload files directly with a  request.
+
+### Download a File
+
+ - [GET /files/{file_id}/download](https://docs.finix.com/api/files/downloadfile.md): Download a file that was uploaded to a  resource.
+
+### Fetch an External Link
+
+ - [GET /files/{file_id}/external_links/{external_link_id}](https://docs.finix.com/api/files/getexternallink.md): Fetch a previously created  resource.
+
+## Identities
+
+An `Identity` resource represents either a person or business in Finix. You'll create an `Identity` to onboard your sellers, and verify the different owners.  <br/><br/> Related Guides: [Getting Started](/guides/getting-started), [Onboarding Sellers](/guides/platform-payments/onboarding-sellers), [Push to Card](/guides/payouts/card-payouts/)
+
+
+### Create an Identity
+
+ - [POST /identities](https://docs.finix.com/api/identities/createidentity.md): Create an  for your Buyer, Recipient, or Seller, using  and  to indicate the type of Identity you're creating.
+
+Related Guides: Getting Started, Onboarding
+
+
+### List Identities
+
+ - [GET /identities](https://docs.finix.com/api/identities/listidentities.md): Retrieve a list the previously created .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch an Identity
+
+ - [GET /identities/{identity_id}](https://docs.finix.com/api/identities/getidentity.md): Retrieve the details of a previously created .
+
+### Update an Identity
+
+ - [PUT /identities/{identity_id}](https://docs.finix.com/api/identities/updateidentity.md): Update an existing .
+
+If you are updating the  of a  that’s already been onboarded, you need to verify the merchant again.
+
+
+### Create an Associated Identity
+
+ - [POST /identities/{identity_id}/associated_identities](https://docs.finix.com/api/identities/createassociatedidentity.md): Create an associated  for every owner with 25% or more ownership over the merchant.
+
+
+### List Associated Identities
+
+ - [GET /identities/{identity_id}/associated_identities](https://docs.finix.com/api/identities/listidentityassociatedidentities.md): Retrieve a list of  for an .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.      
+
+### Verify an Identity
+
+ - [POST /identities/{identity_id}/verifications](https://docs.finix.com/api/identities/createidentityverification.md): Verify an .
+
+## Merchants
+
+A `Merchant` resource represents the entity's merchant account on a processor. Your `Merchant` must be `APPROVED` to process payments. <br/><br/> Related Guides: [Getting Started](/guides/getting-started), [Onboarding Sellers](/guides/platform-payments/onboarding-sellers)
+
+
+### Create a Merchant
+
+ - [POST /identities/{identity_id}/merchants](https://docs.finix.com/api/merchants/createmerchant.md): Create a  to start the underwriting (also called provisioning) process for your seller.  must be created under an .
+
+A bank account must be associated with the previously created  before a  can be successfully onboarded and verified.
+
+
+### List Merchants
+
+ - [GET /merchants](https://docs.finix.com/api/merchants/listmerchants.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.      
+
+### Fetch a Merchant
+
+ - [GET /merchants/{merchant_id}](https://docs.finix.com/api/merchants/getmerchant.md): Retrieve the details of a .
+
+### Update a Merchant
+
+ - [PUT /merchants/{merchant_id}](https://docs.finix.com/api/merchants/updatemerchant.md): Update a  to: 
+- Change the  information saved with the underlying processor
+- Enable Level 2/3 processing
+- Enable Buyer Charges
+- Enable partial authorizations
+- Disable a  so the seller can't create new  and 
+- Disable a  so their  cannot be approved.
+- Terminate a  for suspected fraud, compliance violations, excessive chargebacks, or merchant churn.
+
+
+### Verify a Merchant
+
+ - [POST /merchants/{merchant_id}/verifications](https://docs.finix.com/api/merchants/createmerchantverification.md): Create a  on a Merchant to get them Approved. This request will create a new  Verification. Listen to updates and re-fetch the Verification when it is  or .
+
+For handling  Verifications, see Fetch a Verification. See also Onboarding Process for Seller Merchants and Verification Requirements for Payouts for Recipient Merchants.
+
+
+## Onboarding Forms
+
+Finix offers and hosts pre-built onboarding forms that you can use to collect onboarding and identity verification information from your users. <br/><br/> Related Guides: [Onboarding](/guides/platform-payments/onboarding-sellers), [Onboarding Forms](/guides/platform-payments/onboarding-sellers/seller-onboarding-forms/).
+
+
+### Create an Onboarding Form
+
+ - [POST /onboarding_forms](https://docs.finix.com/api/onboarding-forms/createonboardingform.md): Create an  with the name of the processor you plan to onboard users to and the links theyROLE_PARTNERonboarding_form`.
+
+### Fetch an Onboarding Form
+
+ - [GET /onboarding_forms/{onboarding_form_id}](https://docs.finix.com/api/onboarding-forms/getonboardingform.md): Retrieve the details of an .
+
+### Create an Onboarding Form Link
+
+ - [POST /onboarding_forms/{onboarding_form_id}/links](https://docs.finix.com/api/onboarding-forms/createonboardingformlink.md): Use the  API to create a link that can return users to where they left off completing their Finix Onboarding Form.
+
+## Payment Instruments
+
+A `Payment Instrument` resource represents the payment details of a credit card or bank account. Payment details get tokenized multiple times and each tokenization produces a unique `Payment Instrument`.  <br/><br/> A `Payment Instrument` is associated with a single [`Identity`](#Identities). Once a `Payment Instrument` is created, the `Identity` it's associated with can't be changed. <br/><br/> Including an address when creating a `Payment Instrument` can lower interchange on credit card transactions. <br/><br/> Related Guides: [Using Hosted Fields](/guides/online-payments/payment-tokenization/tokenization-forms), [Getting Started](/guides/getting-started)
+
+
+### Create a Payment Instrument
+
+ - [POST /payment_instruments](https://docs.finix.com/api/payment-instruments/createpaymentinstrument.md): Create a  resource using a card or bank account.
+
+- The creation of  directly via Finix's API should only be done for testing purposes. You must use our hosted fields or the javascript client to remain out of PCI scope.
+
+
+### List Payment Instruments
+
+ - [GET /payment_instruments](https://docs.finix.com/api/payment-instruments/listpaymentinstruments.md): Retrieve a list of  resources.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Payment Instrument
+
+ - [GET /payment_instruments/{payment_instrument_id}](https://docs.finix.com/api/payment-instruments/getpaymentinstrument.md): Retrieve the details of an existing .
+
+### Update a Payment Instrument
+
+ - [PUT /payment_instruments/{payment_instrument_id}](https://docs.finix.com/api/payment-instruments/updatepaymentinstrument.md): Update a  to:
+- Change the  in case the account holder moved (: only).
+- Disable the  resource so it can't be used in requests.
+- Update the  on the .
+- Change the .
+- Enable or disable .
+- Enable or disable .
+
+### List Instrument History Entries
+
+ - [GET /payment_instruments/{payment_instrument_id}/instrument_history](https://docs.finix.com/api/payment-instruments/listinstrumenthistoryentries.md): Whenever a stored payment card's details are updated, an  is created. Use this endpoint to retrieve a list of  for a specific .
+
+
+### Verify a Payment Instrument
+
+ - [PUT /payment_instruments/{payment_instrument_id_verify}](https://docs.finix.com/api/payment-instruments/createpaymentinstrumentverification.md): Verify a  to determine CVV and AVS results.
+
+You can also determine Push To Card eligibility for Push To Card customers.
+
+### Create an Apple Pay Session
+
+ - [POST /apple_pay_sessions](https://docs.finix.com/api/payment-instruments/createapplepaysession.md): Create an  to process Apple Pay transactions on the web.
+
+To create an Apple Pay Session, pass the unique  (provided by Apple) while creating an  resource. Finix returns a  object that you can use to create a payment. For more information, see Apple Pay.
+
+
+## Settlements
+
+A `Settlement` is a logical construct representing a collection (i.e. batch) of Settlement Entries that will get paid out to a specific [`Merchant`](#Merchants). A Settlement Entry can represent [`Transfers`](#Transfers) or [`Split Transfers`](#Split-Transfers) <br/><br/> Related Guides: [Payouts](/guides/payouts)
+
+
+### List All Settlements
+
+ - [GET /settlements](https://docs.finix.com/api/settlements/listsettlements.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Settlement
+
+ - [GET /settlements/{settlement_id}](https://docs.finix.com/api/settlements/getsettlement.md): Retrieve the details of a .
+
+### Close a Settlement
+
+ - [PUT /settlements/{settlement_id}](https://docs.finix.com/api/settlements/closesettlements.md): Close an accruing .
+
+Finix, by default, creates accruing  then closes them based on your payout configurations. Use this endpoint to manually close a specific .
+
+The closed  will not accrue any further transactions and gets immediately submitted for approval.
+- This endpoint is only available to Finix Core customers. If you have any questions, please contact the Finix Support Team.
+- Any refunded  get included in  as a deduction. 
+-   don't get included in .
+- The  minus the  equals the . The  is the amount in cents that gets deposited into the seller's bank account.
+
+### List all Entries in a Settlement
+
+ - [GET /settlements/{settlement_id}/entries](https://docs.finix.com/api/settlements/listsettlemententries.md): Retrieve a list of every  in a . A settlement entry is an object that describes the item inside of a settlement. Transfers, Split Transfers and Custom fees can all be represented by a Settlement Entry. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.      
+
+### Delete Settlement Entries
+
+ - [DELETE /settlements/{settlement_id}/entries](https://docs.finix.com/api/settlements/removesettlemententries.md): Remove a  that makes up a .
+
+As long as the  hasn't been funded, you can remove the  or an array of , along with its corresponding fee entry from the encompassing .
+
+> Per the JSON API for deleting a resource, our API doesn't have a response body when removing a  from a .
+
+### List Settlement Funding Transfers
+
+ - [GET /settlements/{settlement_id}/funding_transfers](https://docs.finix.com/api/settlements/listsettlementfundingtransfers.md): List the funding  that were created when a  was approved that have   or .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Delete Settlement Transfers
+
+ - [DELETE /settlements/{settlement_id}/transfers](https://docs.finix.com/api/settlements/removesettlementtransfers.md): Remove one or more  objects that make up a .
+
+As long as the  has not been funded, you can remove the  or an array of , along with its corresponding  from the encompassing .
+- Funding  can't be deleted.
+
+
+> Per the JSON API for deleting a resource, our API doesn't have a response body when removing a  from a .
+
+### List all Transfers in a Settlement
+
+ - [GET /settlements/{settlement_id}/transfers](https://docs.finix.com/api/settlements/listsettlementtransfers.md): . Use "List all Entries in a Settlement" instead.
+
+Retrieve a list of every  in a  that has   or . This is not an exhaustive list of everything that comprises a settlement. We recommend using  List Settlement Entries.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.      
+
+### List Settlement Funding Transfer Attempts
+
+ - [GET /settlements/{settlement_id}/funding_transfer_attempts](https://docs.finix.com/api/settlements/listsettlementfundingtransferattempts.md): Lists all funding transfer attempts associated for the settlement. A Funding Transfer Attempt resource is created when requesting an instant payout of funds for the settlement.
+
+### Create Settlement Funding Transfer Attempt
+
+ - [POST /settlements/{settlement_id}/funding_transfer_attempts](https://docs.finix.com/api/settlements/createsettlementfundingtransferattempt.md): Create a funding transfer attempt for this settlement. Funding transfer attempts are used to submit funds for instant payout.
+
+## Settlement Queue Entries
+
+A `Settlement Queue Entry` resource represents an entry in the settlement queue used to track when and how a transfer is queued to be processed. <br/><br/> If a merchant's `settlement_queue_mode` is set to `MANUAL`, all transfers will have a `Settlement Queue Entry` created and will not be placed into settlement until the `Settlement Queue Entry` is explicitly released using a **PUT** `Update Settlement Queue Entries` request. <br/><br/> Related Guides: [Account Structures and Settlements](/additional-resources/developers/resources-and-payment-flows/key-resources#settlements)
+
+
+### List Settlement Queue Entries
+
+ - [GET /settlement_queue_entries](https://docs.finix.com/api/settlement-queue-entries/listsettlementqueueentries.md): Retrieve a list of  resources. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Update Settlement Queue Entries
+
+ - [PUT /settlement_queue_entries](https://docs.finix.com/api/settlement-queue-entries/updatesettlementqueueentries.md): This action is used to release a number of  resources, allowing them to be included in a  as  resources.
+
+
+### Fetch a Settlement Queue Entry
+
+ - [GET /settlement_queue_entries/{settlement_queue_entry_id}](https://docs.finix.com/api/settlement-queue-entries/getsettlementqueueentry.md): Retrieve the details of a  created from a , , or .
+
+## Split Transfers
+
+`Transfers` can be split among several different `Merchants.` A `split_transfer` represents how the funds from a split `Transfer` were distributed into a `Merchants` `Settlement`. <br/><br/> Related Guides: [Online Payments Quickstart](/guides/online-payments/online-payments-quickstart), [Split a Transaction](/guides/online-payments/payment-features/split-transactions#split-transactions)
+
+
+### Fetch a Split Transfer
+
+ - [GET /split_transfers/{split_transfer_id}](https://docs.finix.com/api/split-transfers/getsplittransfer.md): Fetch a  that was created from a split transaction.
+
+For more information, see Split a Transaction.
+
+### Fetch Split Transfer Fees
+
+ - [GET /split_transfers/{split_transfer_id}/fees](https://docs.finix.com/api/split-transfers/getsplittransferfees.md): Fetch the fees associated with a .
+
+
+For more information, see Split a Transaction.
+
+## Transfers
+
+A `Transfer` represents any flow of funds either to or from a `Payment Instrument`. All payments in Finix are represented by a `Transfer`. <br/><br/> Related Guides: [Online Payments Quickstart](/guides/online-payments/online-payments-quickstart), [Level 2 and 3 Processing](/guides/online-payments/payment-features/level-2-level-3-processing/), [POS Integration](/guides/in-person-payments/building-your-integration/pos-integration), [Buyer Charges](/guides/online-payments/payment-features/buyer-charges/), [ACH (eCheck) Direct Debit](/guides/online-payments/bank-payments/ach-direct-debits)
+
+
+### Create a Transfer
+
+ - [POST /transfers](https://docs.finix.com/api/transfers/createtransfer.md): Create a .
+
+### List Transfers
+
+ - [GET /transfers](https://docs.finix.com/api/transfers/listtransfers.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Transfer
+
+ - [GET /transfers/{transfer_id}](https://docs.finix.com/api/transfers/gettransfer.md): Retrieve a .
+
+### Update a Transfer
+
+ - [PUT /transfers/{transfer_id}](https://docs.finix.com/api/transfers/updatetransfer.md): Update a .
+
+### Refund or Reverse a Transfer
+
+ - [POST /transfers/{transfer_id}/reversals](https://docs.finix.com/api/transfers/createtransferreversal.md): Reverse a transfer with a  of . This reversal creates a new  resource with a  of . 
+
+Related Guides: Refunding Payments
+
+
+### List Transfer Reversals
+
+ - [GET /transfers/{transfer_id}/reversals](https://docs.finix.com/api/transfers/listtransferreversals.md): Retrieve a list of reversals for a .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+## Users
+
+A `User` resource represents a pair of API keys which are used to perform authenticated requests against the Finix API. When making authenticated requests via HTTP basic access authentication the ID of a `User` resource maps to the username, while the `password` corresponds to the password (i.e. secret key). <br/><br/> The password field for a `User` resource is only returned during the initial creation. Any following GET requests to the resource returns the `password` field as **null** for security purposes. <br/><br/> Related Guides: [Account Structure](/additional-resources/developers/resources-and-payment-flows/key-resources#account-structure)
+
+
+### Create an Application User
+
+ - [POST /applications/{application_id}/users](https://docs.finix.com/api/users/createapplicationuser.md): Creating an application user is the equivalent of provisioning API keys (i.e. credentials) for an .
+
+> Each Application can have multiple  which allows each seller to have multiple API keys that can be independently enabled and disabled. Merchants only have read access to the API.
+
+### List all Users
+
+ - [GET /users](https://docs.finix.com/api/users/listusers.md): Retrieve a list of all .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a User by ID
+
+ - [GET /users/{user_id}](https://docs.finix.com/api/users/getuser.md): Retrieve a specific user with the ID of the .
+
+### Update a User
+
+ - [PUT /users/{user_id}](https://docs.finix.com/api/users/updateuser.md): Update a  with new tags or disable the  and their credentials.
+
+## Webhooks
+
+`Webhooks` lets you build or set up integrations which subscribe to certain automated notifications (i.e. events) on the Finix API. When one of those events is triggered, a HTTP POST payload is sent to the webhook's configured URL. <br/><br/> Related Guides: [Webhooks](/additional-resources/developers/webhooks)
+
+
+### Create a Webhook
+
+ - [POST /webhooks](https://docs.finix.com/api/webhooks/createwebhook.md): Create a  to specify an endpoint where Finix can send events.
+
+### List Webhooks
+
+ - [GET /webhooks](https://docs.finix.com/api/webhooks/listwebhooks.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Webhook
+
+ - [GET /webhooks/{webhook_id}](https://docs.finix.com/api/webhooks/getwebhook.md): Retrieve the details of a .
+
+### Update a Webhook
+
+ - [PUT /webhooks/{webhook_id}](https://docs.finix.com/api/webhooks/updatewebhook.md): Update an existing to:
+- Disable or enable an endpoint URL to receive webhook events.
+- Add authentication to a .
+- Filter the webhook events sent to an endpoint URL.
+
+## Checkout Forms
+
+`Checkout Forms` are a low-code solution that enables you to create a customizable payment page where buyers can easily enter their payment details and submit a payment on both desktop and mobile devices. <br/><br/> With `Checkout Forms`, you can quickly create checkout pages and accept payments from buyers with minimal development work. <br/><br/> Related Guides: [Checkout Pages](/guides/online-payments/low-code-no-code/checkout-pages)
+
+
+### Create a Checkout Form
+
+ - [POST /checkout_forms](https://docs.finix.com/api/checkout-forms/createcheckoutform.md): Create a  to accept the details of buyers. 
+
+Related guides: Checkout Forms.
+
+### List Checkout Forms
+
+ - [GET /checkout_forms](https://docs.finix.com/api/checkout-forms/listcheckoutforms.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Checkout Form
+
+ - [GET /checkout_forms/{checkout_forms_id}](https://docs.finix.com/api/checkout-forms/getcheckoutform.md): Retrieve the details of a previously created .
+
+## Payment Links
+
+`Payment Links` create individual links you can send to buyers to complete a transaction. You can share these links on different platforms such as web pages, email, text, or QR codes.  <br/><br/> Related Guides: [Payment Links](/guides/online-payments/low-code-no-code/payment-links)
+
+
+### List Payment Links
+
+ - [GET /payment_links](https://docs.finix.com/api/payment-links/listpaymentlinks.md): Retrieve a list of previously created .
+
+Related guides: Payment Links.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Create a Payment Link
+
+ - [POST /payment_links](https://docs.finix.com/api/payment-links/createpaymentlink.md): Create a  to help a buyer submit a payment. 
+
+Related guides: Payment Links.
+
+
+### Fetch a Payment Link
+
+ - [GET /payment_links/{payment_link_id}](https://docs.finix.com/api/payment-links/getpaymentlink.md): Retrieve the details of a previously created .
+
+### Update a Payment Link
+
+ - [PUT /payment_links/{payment_link_id}](https://docs.finix.com/api/payment-links/updatepaymentlink.md): Update an existing  resource, commonly used for:
+
+- Adding or updating tags and 
+- Toggling the payment link's  between  and 
+- Modifying  for an  payment link
+- Modifying  for an  single-use payment link
+
+The only fields that can be updated for , , or  payment links are  and .
+
+
+## Payout Links
+
+A `Payout Link` is a unique, one-time link you can send via email or text to a recipient for fast and secure payouts. For card-based payouts, funds are typically available within minutes. <br/><br/> Payout Links can be used for various purposes, including insurance payments, sales commissions, and more. Each link can be customized to display your brand name and logo, providing a seamless experience for recipients. <br/><br/> Related Guides: [Payout Links](/guides/payouts/payout-links)
+
+
+### Create a Payout Link
+
+ - [POST /payout_links](https://docs.finix.com/api/payout-links/createpayoutlink.md): Generate a  resource to create a single-use link for sending a payout to a recipient.
+
+
+### List Payout Links
+
+ - [GET /payout_links](https://docs.finix.com/api/payout-links/listpayoutlinks.md): Retrieve a list of  resources. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Payout Link
+
+ - [GET /payout_links/{payout_link_id}](https://docs.finix.com/api/payout-links/getpayoutlink.md): Retrieve the details of a previously created .
+
+### Update a Payout Link
+
+ - [PUT /payout_links/{payout_link_id}](https://docs.finix.com/api/payout-links/updatepayoutlink.md): Update an existing  resource.
+
+
+## Receipts
+
+The `Receipt` resource generates a receipt for [Transfers](#Transfers) or [Authorizations](#Authorizations). You can then send the `Receipt` via Email, SMS, or use the information from the `Receipt` to send it yourself.  <br/><br/> Related Guides: [Receipts for Online Payments](/guides/online-payments/payment-features/sending-receipts)
+
+
+### Create a Receipt
+
+ - [POST /receipts](https://docs.finix.com/api/receipts/createreceipt.md): Create a  resource to generate a receipt for a Transfer or Authorization. 
+
+### Basic Details
+
+A  should include basic details, such as the total amount, buyer billing information, merchant name, and contact information.
+
+### Additional Details
+
+You can provide additional details on the  as described below. 
+
+#### Include a breakdown of charges
+
+You can provide a breakdown of the additional charges/fees () that add up to the total amount, such as subtotal, shipping amount, or surcharge. 
+
+#### Display an itemized product list
+
+You can provide details of the products in the order (), including product name, description, price, quantity, etc., for each item in this order.
+
+#### Include Additional Details
+
+You can provide additional details to be included on the receipt such as "Invoice Number", "VIN", "Service Date", or "Technician".
+
+
+### Fetch a Receipt
+
+ - [GET /receipts/{receipt_id}](https://docs.finix.com/api/receipts/getreceipt.md): Retrieve the details of a previously created .
+
+### Create a Delivery Attempt
+
+ - [POST /receipts/{receipt_id}/delivery_attempts](https://docs.finix.com/api/receipts/createreceiptdeliveryattempt.md): Create a  on an existing  resource.
+
+
+### List Delivery Attempts for a Receipt
+
+ - [GET /receipts/{receipt_id}/delivery_attempts](https://docs.finix.com/api/receipts/listreceiptdeliveryattempts.md): Whenever a receipt is sent, a  resource is created. Use this endpoint to retrieve a list of delivery attempts for a specific .
+
+## Subscriptions
+
+A `Subscription` resource represents a recurring charge to a `Payment Instrument` at regular intervals. Subscribers can be buyers, customers, or merchants. <br><br> When creating a `Subscription`, you have the option to use a `Subscription Plan`. <br><br> Limitations:<br> - <b>Supported countries</b>: At this time, subscriptions are available in the United States.<br> - <b>Supported payment methods</b>: Subscriptions currently support recurring card payments and recurring bank account payments (<a href="/guides/online-payments/bank-payments/ach-direct-debits">ACH</a> in the USA).<br> - <b>Approved merchants</b>: At this time, only approved merchants with one of the following processors can create subscriptions: `DUMMY_V1` and `FINIX_V1`.<br><br> Related Guides: [Creating Subscriptions](/guides/subscriptions), [Creating Subscription Plans](/guides/subscriptions/subscription-plans), [Recurring Payments Guidelines](/guides/subscriptions/recurring-payment-guidelines)
+
+
+### Create a Subscription
+
+ - [POST /subscriptions](https://docs.finix.com/api/subscriptions/createsubscription.md): Create a  resource to charge a  regularly.
+
+If there is no trial period, the subscription will create a  shortly after creation (within 60 minutes).
+
+The following options are available when creating a subscription.
+
+### Adding a trial period
+
+You can create a subscription with a trial period by providing  in the request body. After creating a subscription, a  will occur after the trial period has elapsed. The  property in the response determines when the transfer will take place.
+
+### Adding a discount phase
+
+To apply a discount, include  in the request body. Set  as the discounted price and  to specify how many billing intervals the discount applies. After this period, the customer is charged the full amount from the .
+
+### Using a Subscription Plan
+
+Think of a  as a template for the  resource. When creating a subscription, you can use a  by providing a . Doing so lets you base a subscription on existing values for , , and more.
+
+### Future Subscription
+
+Schedule a subscription by setting  to a future timestamp. The response will show  as  and  as , indicating it has not started. This applies to both subscriptions with or without a subscription plan.
+
+### Fixed-Length Subscription
+
+You can set a subscription to expire by specifying the , which indicates the number of recurring billing cycles in months or weeks. You can set subscriptions created from subscription plans to expire.
+
+### Card Validation with $0 Authorization
+
+When creating a subscription using a card-type , Finix performs a $0  to validate the card. This check confirms that the card is active and verifies the billing address and security code (AVS and CVV).
+
+If the card fails validation, the API returns a  error and the subscription is not created. This protects against invalid or risky cards, helping reduce failed payments and fraud.
+
+
+### List Subscriptions
+
+ - [GET /subscriptions](https://docs.finix.com/api/subscriptions/listsubscriptions.md): Retrieve a list of  resources. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Subscription
+
+ - [GET /subscriptions/{subscription_id}](https://docs.finix.com/api/subscriptions/getsubscription.md): Retrieve the details of a previously created .
+
+### Update a Subscription
+
+ - [PUT /subscriptions/{subscription_id}](https://docs.finix.com/api/subscriptions/updatesubscription.md): Update an existing  resource, typically used for subscriptions created without a . Note that you can only update specific resource fields.
+
+Two common use cases for updating a  are:
+
+### Updating the payment amount
+
+This operation allows for adjusting the payment amount, such as when a subscriber decides to donate more or less money to a charity or upgrade/downgrade a product or service.
+
+### Updating billing details
+
+If the subscriber wishes to change their payment details, you can update the ] property with a new [.
+
+
+### Cancel a Subscription
+
+ - [DELETE /subscriptions/{subscription_id}](https://docs.finix.com/api/subscriptions/removesubscription.md): Cancel a .
+
+### Create a Subscription Balance Entry
+
+ - [POST /subscriptions/{subscription_id}/subscription_balance_entries](https://docs.finix.com/api/subscriptions/createsubscriptionbalanceentry.md): A  represents a credit applied to a . 
+
+
+### List Subscription Balance Entries
+
+ - [GET /subscriptions/{subscription_id}/subscription_balance_entries](https://docs.finix.com/api/subscriptions/listsubscriptionbalanceentries.md): Retrieve a list of  resources to view a timeline of all changes to a subscription's balance by a user. Currently, only credits can modify a subscription's balance.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Update a Subscription Balance Entry
+
+ - [PUT /subscriptions/{subscription_id}/subscription_balance_entries/{subscription_balance_entry_id}](https://docs.finix.com/api/subscriptions/updatesubscriptionbalanceentry.md): This operation allows you to update the tags for an existing .
+
+
+## Subscription Links
+
+A `Subscription Link` is a link that a `Merchant` can create and send to a buyer for subscribing to a service.
+
+
+### Create a Subscription Link
+
+ - [POST /subscription_links](https://docs.finix.com/api/subscription-links/createsubscriptionlink.md): Create a  to send to a buyer for subscribing to a service.
+
+### List Subscription Links
+
+ - [GET /subscription_links](https://docs.finix.com/api/subscription-links/listsubscriptionlinks.md): Retrieve a list of  resources.
+
+### Fetch a Subscription Link
+
+ - [GET /subscription_links/{subscription_link_id}](https://docs.finix.com/api/subscription-links/getsubscriptionlink.md): Retrieve the details of a previously created .
+
+### Deactivate a Subscription Link
+
+ - [PUT /subscription_links/{subscription_link_id}](https://docs.finix.com/api/subscription-links/updatesubscriptionlink.md): Deactivate an existing .
+
+## Subscription Plans
+
+A `Subscription Plan` resource is a template with set recurring costs and frequencies that can be reused across multiple `Subscription` resources.  <br/><br/> Related Guides: [Creating Subscriptions Plans](/guides/subscriptions/subscription-plans), [Creating Subscriptions](/guides/subscriptions), [Recurring Payments Guidelines](/guides/subscriptions/recurring-payment-guidelines)
+
+
+### Create a Subscription Plan
+
+ - [POST /subscription_plans](https://docs.finix.com/api/subscription-plans/createsubscriptionplan.md): Create a  resource to group and manage recurring payments for individual  resources. You can create a  with or without a trial period.
+
+
+### List Subscription Plans
+
+ - [GET /subscription_plans](https://docs.finix.com/api/subscription-plans/listsubscriptionplans.md): Retrieve a list of . 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Subscription Plan
+
+ - [GET /subscription_plans/{subscription_plan_id}](https://docs.finix.com/api/subscription-plans/getsubscriptionplan.md): Retrieve the details of a previously created .
+
+### Update a Subscription Plan
+
+ - [PUT /subscription_plans/{subscription_plan_id}](https://docs.finix.com/api/subscription-plans/updatesubscriptionplan.md): Update an existing .
+
+Options:
+- Set  to  to update existing subscriptions.
+- Archive the  by setting its  to .
+
+
+## Transfer Attempts
+
+A `transfer_attempt` is created when a buyer attempts to pay for a payment using a Payment Link or Checkout Form. Using Transfer Attempts, you can track the lifecycle of a payment or a series of payments if you are using a multi-use Payment Link.  <br/><br/> Each `transfer_attempt` has as reference to a `transfer_id` to allow you to query it for additional data.
+
+
+### List Transfer Attempts
+
+ - [GET /transfer_attempts](https://docs.finix.com/api/transfer-attempts/listtransferattempts.md): Retrieve a list of all  resources, or filter the results to a specific , , and  using the  query parameter.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Transfer Attempt
+
+ - [GET /transfer_attempts/{transfer_attempt_id}](https://docs.finix.com/api/transfer-attempts/gettransferattempt.md): Retrieve the details of a  initiated from a ,  or .
+
+## Balances
+
+A `Balance` resource represents the current financial state of an `Application` identified by the `linked_to` query parameter.  <br/><br/> It tracks the state of funds processed through the system, including amounts that are:
+  - `available_amount` for immediate use or disbursement.
+  - `pending_amount` due to processing times, holds, or other constraints.
+  - `posted_amount`, which reflects the total sum (including both available and pending funds).
+
+
+### List Balances
+
+ - [GET /balances](https://docs.finix.com/api/balances/listbalances.md): Retrieve a list of  resources.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Balance
+
+ - [GET /balances/{balance_id}](https://docs.finix.com/api/balances/getbalance.md): Retrieve the details of a specific .
+
+### List Balance Entries
+
+ - [GET /balances/{balance_id}/balance_entries](https://docs.finix.com/api/balances/listbalanceentries.md): A  reflects a change to an application's  due to a  or a  (i.e., "top-up").
+
+You can use this endpoint to obtain a list of  objects.
+
+
+### Fetch a Balance Entry
+
+ - [GET /balance_entries/{balance_entry_id}](https://docs.finix.com/api/balances/getbalanceentry.md): Retrieve the details of a specific .
+
+## Balance Adjustments
+
+A `Balance Adjustment` modifies the account `Balance` by adding funds (a 'top-up') or reducing funds for Payouts. Each adjustment is linked to a specific payment rail (e.g., ACH, card, wire).
+
+
+### Create a Balance Adjustment
+
+ - [POST /balance_adjustments](https://docs.finix.com/api/balance-adjustments/createbalanceadjustment.md): Create a  to increase (i.e., 'Top-up') or decrease your account balance for Payouts.
+
+
+### List Balance Adjustments
+
+ - [GET /balance_adjustments](https://docs.finix.com/api/balance-adjustments/listbalanceadjustments.md): Retrieve a list of  resources for an .
+
+Only  or  credentials can be used to retrieve  objects.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+## Disbursement Rules
+
+For the Payouts product, when a payout is executed, such as a Push-To-Card or ACH transaction, Finix checks the transaction against velocity rules and balance rules.
+
+Rules establish limits on transactions. For example, there may be a daily transaction limit of 100 transactions (`count_limit`) or a monthly volume limit of $100,000 (`volume_limit`). If a transaction exceeds any defined limit, the transaction is rejected. 
+
+Rules are set for entities involved in transactions, including the application, senders, and recipients.
+
+The "Application" represents the customer to whom Finix is applying the rules. Application rules are set solely by Finix and are applied to every single transaction.
+
+You can establish rules for "senders" and "recipients," referring to the parties involved in transactions:
+
+- In the case of a `PULL_FROM_CARD` or `PULL_FROM_ACH` transaction, sender rules are applied (either card or ACH rules). The "target" of the pull is referred to as the "sender," specifically the customer of Finix's client. 
+- Conversely, in the case of a `PUSH_FROM_CARD` or `PUSH_FROM_ACH` transaction, the recipient rules are applied (either card or ACH rules). The "target" of the push is referred to as the "recipient," which is, in turn, the customer of Finix's client.
+
+
+### List Disbursement Rules
+
+ - [GET /disbursement_rules](https://docs.finix.com/api/disbursement-rules/listdisbursementrules.md): Retrieve a list of  resources linked to an  / . Currently, there is only one  object per application / platform.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+## Application Profiles
+
+The `application_profile` resource is used to configure the `Application`'s `Fee Profile`. The `Application`'s `Fee Profile` configures what `Fee` gets applied to transactions processed by the `application_profile`. <br/><br/> Related Guides: 
+  - [Onboarding Process](../guides/platform-payments/onboarding-sellers/seller-onboarding-process)
+  - [Collecting Fees](../guides/platform-payments/monetizing-payments/collecting-seller-fees)
+
+
+### List Application Profiles
+
+ - [GET /application_profiles](https://docs.finix.com/api/application-profiles/listapplicationprofiles.md): Retrieve a list of all .
+
+For details on how to query endpoints using the available parameters.
+
+### Fetch Application Profile
+
+ - [GET /application_profiles/{application_profile_id}](https://docs.finix.com/api/application-profiles/getapplicationprofile.md): Retrieve the details of an existing .
+
+### Update Application Profile
+
+ - [PUT /application_profiles/{application_profile_id}](https://docs.finix.com/api/application-profiles/updateapplicationprofile.md): Update an existing .
+
+## Applications
+
+The `Application` resource represents your app. For example, an iOS app, website, online marketplace, SaaS platform, etc. – any web service that connects buyers (i.e. customers) and sellers (i.e. merchants). In other words, an `Application` is a resource that represents the program you're integrating with Finix and using to connect with customers (i.e. buyers). <br/><br/> Related Guides: [Getting Started](/guides/getting-started)
+
+
+### Create an Application
+
+ - [POST /applications](https://docs.finix.com/api/applications/createapplication.md): Create a . If created successfully, a 201 response gets returned and adds a location header to the response which refers to the new created .
+
+### List Applications
+
+ - [GET /applications](https://docs.finix.com/api/applications/listapplications.md): Retrieve a list of . If there are no , an empty collection is returned. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters..
+
+
+### Fetch a Application
+
+ - [GET /applications/{application_id}](https://docs.finix.com/api/applications/getapplication.md): Retrieve the details of an existing .
+
+### Update Application
+
+ - [PUT /applications/{application_id}](https://docs.finix.com/api/applications/updateapplication.md): Update the details of a .
+
+## Balance Transfers
+
+Our `Balance Transfers` API provides platforms the option to create a money movement between their FBO (For the Benefit Of) `Settlement` account and their operating account. This is only available for Finix Core customers with Litle V12 credentials. <br/><br/> If you have any questions, please reach out to your Finix point of contact or contact [the Finix Support team](mailto:support@finix.com).
+
+
+### Create a Balance Transfer
+
+ - [POST /balance_transfers](https://docs.finix.com/api/balance-transfers/createbalancetransfer.md): Create a .
+
+### List Balance Transfers
+
+ - [GET /balance_transfers](https://docs.finix.com/api/balance-transfers/listbalancetransfers.md): Retrieve a list of all  objects.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Balance Transfer
+
+ - [GET /balance_transfers/{balance_transfers_id}](https://docs.finix.com/api/balance-transfers/getbalancetransfers.md): Retrieve the details of a .
+
+## Merchant Profiles
+
+A `merchant_profile` links a `merchant` to it's `risk_profile` and `fee_profile`. Each `merchant` has a `merchant_profile`. <br/><br/> When a `merchant` gets created, a `merchant_profile` also gets created. This new `merchant_profile` automatically receives a new `risk_profile` and `fee_profile` that are copies of the risk and fee profiles on the `application_profile`. <br/><br/> Related Guides:
+  - [Collecting Fees](../guides/platform-payments/monetizing-payments/collecting-seller-fees)
+
+
+### List Merchant Profiles
+
+ - [GET /merchant_profiles](https://docs.finix.com/api/merchant-profiles/listmerchantprofiles.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Merchant Profile
+
+ - [GET /merchant_profiles/{merchant_profile_id}](https://docs.finix.com/api/merchant-profiles/getmerchantprofile.md): Retrieve the details of a previously created .
+
+### Update a Merchant Profile
+
+ - [PUT /merchant_profiles/{merchant_profile_id}](https://docs.finix.com/api/merchant-profiles/updatemerchantprofile.md): Update a .
+
+## Payout Profiles
+
+A `Payout Profile` configures how fees and payouts get calculated and processed. <br/><br/> Related Guides: [Configuring Payouts](/guides/payouts)
+
+
+### List Payout Profiles
+
+ - [GET /payout_profiles](https://docs.finix.com/api/payout-profiles/listpayoutprofiles.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Payout Profile
+
+ - [GET /payout_profiles/{payout_profile_id}](https://docs.finix.com/api/payout-profiles/getpayoutprofile.md): Retrieve the details of a previously created .
+
+### Update a Payout Profile
+
+ - [PUT /payout_profiles/{payout_profile_id}](https://docs.finix.com/api/payout-profiles/updatepayoutprofilerequest.md): Update a  to configure how fees and payouts get calculated, credited, and debited.
+
+By default,  get configured with daily net settlements. Payouts get submitted using the  . Contact Finix Support to configure payouts on a custom schedule.
+
+### Fetch Payout Profile by Merchant
+
+ - [GET /merchants/{merchant_id}/payout_profile](https://docs.finix.com/api/payout-profiles/fetchpayoutprofilesbymerchant.md): Fetch the the  created for a specific .
+
+## Review Queue Items
+
+Funds are released to sub-merchants when a `Settlement`'s corresponding `Review Queue Item` is marked as `ACCEPTED` by a user with the appropriate role permissions. <br/><br/> Related Guides: [Roles & Permissions](/guides/managing-operations/managing-team-members/roles-permissions)
+
+
+### List Review Queue Items
+
+ - [GET /review_queue](https://docs.finix.com/api/review-queue-items/listreviewqueueitems.md): Retrieve a list of  resources. 
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+
+### Fetch a Review Queue Item
+
+ - [GET /review_queue/{review_queue_item_id}](https://docs.finix.com/api/review-queue-items/getreviewqueueitem.md): Retrieve the details of a  corresponding to a .
+
+### Update a Review Queue Item
+
+ - [PUT /review_queue/{review_queue_item_id}](https://docs.finix.com/api/review-queue-items/updatereviewqueueitem.md): Update an existing  resource.
+
+
+## Verifications
+
+`Verifications` are used to verify `Identities` and `Payment Instruments`. <br/><br/> For `Identities`, a verification represents an attempt to onboard and underwrite an identity.  <br/><br/> For `Payment Instruments`, a verification represents getting additional information from the card brands to verify a card is eligible for push to card. <br/><br/> Related Guides: [Onboarding with the API](/guides/platform-payments/onboarding-sellers/seller-onboarding-via-api), [Push to Card](/guides/payouts/card-payouts)
+
+
+### List Merchant Verifications
+
+ - [GET /merchants/{merchant_id}/verifications](https://docs.finix.com/api/verifications/listmerchantverifications.md): Retrieve a list of all the  for a  resource.
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### List Verifications
+
+ - [GET /verifications](https://docs.finix.com/api/verifications/listverifications.md): Retrieve a list of .
+
+For details on how to query endpoints using the available parameters, see Query Parameters.
+
+### Fetch a Verification
+
+ - [GET /verifications/{verification_id}](https://docs.finix.com/api/verifications/getverification.md): Retrieve the details of a .
+

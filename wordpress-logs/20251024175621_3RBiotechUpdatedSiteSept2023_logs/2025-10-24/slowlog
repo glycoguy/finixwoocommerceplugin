@@ -1,0 +1,1291 @@
+ 
+[24-Oct-2025 02:26:55]  pid 2243
+script_filename = /www/index.php
+[0x00007c4ea3e14d90] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e146b0] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e145b0] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e14420] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e14380] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e142f0] wp_remote_post() /www/wp-content/plugins/finix-for-woocommerce/src/Finix/API.php:154
+[0x00007c4ea3e141a0] make_payment() /www/wp-content/plugins/finix-for-woocommerce/src/Events/CardAchPaymentEvent.php:132
+[0x00007c4ea3e13470] process() /www/wp-content/plugins/finix-for-woocommerce/src/Gateways/CardBankGateway.php:198
+[0x00007c4ea3e133f0] process_payment() /www/wp-content/plugins/woocommerce/src/StoreApi/Legacy.php:56
+[0x00007c4ea3e13060] process_legacy_payment() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12f80] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12f10] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e12e50] do_action_ref_array() /www/wp-content/plugins/woocommerce/src/StoreApi/Utilities/CheckoutTrait.php:82
+[0x00007c4ea3e12d90] process_payment() /www/wp-content/plugins/woocommerce/src/StoreApi/Routes/V1/Checkout.php:557
+[0x00007c4ea3e12ce0] get_route_post_response() /www/wp-content/plugins/woocommerce/src/StoreApi/Routes/V1/AbstractRoute.php:119
+[0x00007c4ea3e12c60] get_response_by_request_method() /www/wp-content/plugins/woocommerce/src/StoreApi/Routes/V1/Checkout.php:158
+[0x00007c4ea3e12ba0] get_response() /wordpress/wp-includes/rest-api/class-wp-rest-server.php:1292
+[0x00007c4ea3e12ac0] respond_to_request() /wordpress/wp-includes/rest-api/class-wp-rest-server.php:1125
+[0x00007c4ea3e129c0] dispatch() /wordpress/wp-includes/rest-api/class-wp-rest-server.php:439
+[0x00007c4ea3e12800] serve_request() /wordpress/wp-includes/rest-api.php:459
+ 
+[24-Oct-2025 02:39:57]  pid 2347
+script_filename = /www/index.php
+[0x00007c4ea3e18860] fread() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Util.php:19
+[0x00007c4ea3e18720] read() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:133
+[0x00007c4ea3e184f0] decodeByType() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:111
+[0x00007c4ea3e181d0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:267
+[0x00007c4ea3e18020] decodeMap() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:123
+[0x00007c4ea3e17df0] decodeByType() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:111
+[0x00007c4ea3e17ad0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:267
+[0x00007c4ea3e17920] decodeMap() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:123
+[0x00007c4ea3e176f0] decodeByType() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:111
+[0x00007c4ea3e173d0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:87
+[0x00007c4ea3e170b0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:267
+[0x00007c4ea3e16f00] decodeMap() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:123
+[0x00007c4ea3e16cd0] decodeByType() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:111
+[0x00007c4ea3e169b0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:322
+[0x00007c4ea3e16840] resolveDataPointer() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:174
+[0x00007c4ea3e16680] getWithPrefixLen() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:136
+[0x00007c4ea3e16580] get() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-database-service.php:159
+[0x00007c4ea3e16350] get_iso_country_code_for_ip() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-geolocation.php:227
+[0x00007c4ea3e16240] get_geolocation() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e16160] apply_filters() /wordpress/wp-includes/plugin.php:205
+ 
+[24-Oct-2025 02:39:57]  pid 2346
+script_filename = /www/index.php
+[0x00007c4ea3e15c50] Composer\Autoload\{closure}() /www/wp-content/plugins/elementor/vendor/composer/ClassLoader.php:427
+[0x00007c4ea3e15bc0] loadClass() /www/wp-content/plugins/woocommerce-multilingual/classes/multi-currency/payment-gateways/class-wcml-currencies-payment-gateways.php:179
+[0x00007c4ea3e15b50] is_subclass_of() /www/wp-content/plugins/woocommerce-multilingual/classes/multi-currency/payment-gateways/class-wcml-currencies-payment-gateways.php:179
+[0x00007c4ea3e15aa0] is_a_valid_gateway() /www/wp-content/plugins/woocommerce-multilingual/classes/multi-currency/payment-gateways/class-wcml-currencies-payment-gateways.php:186
+[0x00007c4ea3e158b0] store_supported_gateways() /www/wp-content/plugins/woocommerce-multilingual/classes/multi-currency/payment-gateways/class-wcml-currencies-payment-gateways.php:107
+[0x00007c4ea3e15770] init_gateways() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 02:49:02]  pid 2351
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 02:49:02]  pid 2347
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 02:49:02]  pid 2352
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 02:52:36]  pid 2352
+script_filename = /www/index.php
+[0x00007c4ea3e13df0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13710] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13610] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 03:04:07]  pid 2352
+script_filename = /www/index.php
+[0x00007c4ea3e15940] block_has_support() /wordpress/wp-includes/block-supports/align.php:18
+[0x00007c4ea3e158b0] wp_register_alignment_support() /wordpress/wp-includes/class-wp-block-supports.php:159
+[0x00007c4ea3e157f0] register_attributes() /wordpress/wp-includes/class-wp-block-supports.php:68
+[0x00007c4ea3e15770] init() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:04:07]  pid 2355
+script_filename = /www/index.php
+[0x00007c4ea3e15770] include_cmb() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:04:07]  pid 2356
+script_filename = /www/index.php
+[0x00007c4ea3e15920] file_exists() /www/wp-content/plugins/woocommerce-checkout-manager/jetpack_vendor/automattic/jetpack-assets/src/class-assets.php:368
+[0x00007c4ea3e157d0] register_script() /www/wp-content/plugins/woocommerce/vendor/automattic/jetpack-assets/src/class-script-data.php:62
+[0x00007c4ea3e15770] register_assets() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:04:07]  pid 2368
+script_filename = /www/index.php
+[0x00007c4ea3e18770] include_cmb() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e18690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e18620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e18540] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e18340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e182c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e18250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e181b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e180b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:04:07]  pid 2369
+script_filename = /www/index.php
+[0x00007c4ea3e18ca0] array_keys() /wordpress/wp-includes/class-wp-hook.php:97
+[0x00007c4ea3e18bc0] add_filter() /wordpress/wp-includes/plugin.php:128
+[0x00007c4ea3e18b10] add_filter() /wordpress/wp-includes/plugin.php:442
+[0x00007c4ea3e18a70] add_action() /www/wp-content/plugins/seo-by-rank-math/includes/admin/class-page.php:164
+[0x00007c4ea3e18770] init() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e18690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e18620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e18540] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e18340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e182c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e18250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e181b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e180b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:19:12]  pid 2369
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:19:12]  pid 2375
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:19:12]  pid 2376
+script_filename = /www/index.php
+[0x00007c4ea3e19430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e18d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e18c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e18ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e18a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e18990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e188a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e18770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e18690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e18620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e18540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e18340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e182c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e18250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e181b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e180b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:34:18]  pid 2375
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:34:18]  pid 2376
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:34:18]  pid 2377
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:34:18]  pid 2387
+script_filename = /www/index.php
+[0x00007c4ea3e19430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e18d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e18c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e18ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e18a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e18990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e188a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e18770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e18690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e18620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e18540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e18340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e182c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e18250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e181b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e180b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:34:18]  pid 2388
+script_filename = /www/index.php
+[0x00007c4ea3e19430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e18d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e18c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e18ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e18a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e18990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e188a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e18770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e18690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e18620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e18540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e18340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e182c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e18250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e181b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e180b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 03:49:23]  pid 2387
+script_filename = /www/index.php
+[0x00007c4ea3e16430] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15d50] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15c50] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e15ac0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e15a20] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e15990] wp_remote_post() /wordpress/wp-includes/cron.php:969
+[0x00007c4ea3e158a0] spawn_cron() /wordpress/wp-includes/cron.php:1049
+[0x00007c4ea3e15770] _wp_cron() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15690] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15620] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15540] do_action() /wordpress/wp-settings.php:752
+[0x00007c4ea3e15340] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e152c0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e15250] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e151b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:13
+[0x00007c4ea3e150b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 05:03:00]  pid 2439
+script_filename = /www/index.php
+[0x00007c4ea3e13df0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13710] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13610] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 07:08:27]  pid 2490
+script_filename = /www/index.php
+[0x00007c4ea3e13df0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13710] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13610] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 07:40:42]  pid 2490
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:207
+ 
+[24-Oct-2025 09:12:13]  pid 2526
+script_filename = /www/index.php
+[0x00007c4ea3e13db0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e136d0] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e135d0] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13440] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133b0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13330] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e13160] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e130c0] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13000] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12f70] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e50] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12db0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d00] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c50] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12be0] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b00] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12a90] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129b0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e12960] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128a0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 10:17:30]  pid 2573
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:207
+ 
+[24-Oct-2025 10:57:46]  pid 2573
+script_filename = /www/index.php
+[0x00007c4ea3e23b60] astra_parse_css() /www/wp-content/themes/astra/inc/class-astra-dynamic-css.php:4664
+[0x00007c4ea3e142a0] return_output() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e141c0] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e140e0] apply_filters() /www/wp-content/themes/astra/inc/core/class-astra-enqueue-scripts.php:369
+[0x00007c4ea3e12fa0] enqueue_scripts() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12ec0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12e50] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e12d70] do_action() /wordpress/wp-includes/script-loader.php:2299
+[0x00007c4ea3e12d10] wp_enqueue_scripts() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12c30] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12bc0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e12ae0] do_action() /wordpress/wp-includes/general-template.php:3192
+[0x00007c4ea3e12a90] wp_head() /www/wp-content/themes/astra/header.php:31
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+[0x00007c4ea3e12780] load_template() /wordpress/wp-includes/template.php:745
+[0x00007c4ea3e12660] locate_template() /wordpress/wp-includes/general-template.php:48
+[0x00007c4ea3e125b0] get_header() /www/wp-content/themes/astra/page.php:20
+[0x00007c4ea3e124a0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template-loader.php:106
+[0x00007c4ea3e121b0] [INCLUDE_OR_EVAL]() /wordpress/wp-blog-header.php:19
+[0x00007c4ea3e120b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 12:03:22]  pid 2631
+script_filename = /www/index.php
+[0x00007c4ea3e14d40] add_controls() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:781
+[0x00007c4ea3e14c10] add_group_control() /www/wp-content/plugins/elementor/core/document-types/page-base.php:153
+[0x00007c4ea3e14ac0] register_style_controls() /www/wp-content/plugins/elementor/core/document-types/page-base.php:76
+[0x00007c4ea3e14a00] register_controls() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:2435
+[0x00007c4ea3e148f0] init_controls() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:570
+[0x00007c4ea3e147e0] get_stack() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:315
+[0x00007c4ea3e14600] get_controls() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:2524
+[0x00007c4ea3e14230] sanitize_settings() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1161
+[0x00007c4ea3e14110] get_data() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:2267
+[0x00007c4ea3e13f40] get_init_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:143
+[0x00007c4ea3e13ed0] ensure_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:40
+[0x00007c4ea3e13e60] get_settings() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1178
+[0x00007c4ea3e13d60] get_parsed_dynamic_settings() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1269
+[0x00007c4ea3e13940] get_settings_for_display() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1361
+[0x00007c4ea3e137c0] get_frontend_settings() /www/wp-content/plugins/elementor/core/base/document.php:423
+[0x00007c4ea3e135c0] get_container_attributes() /www/wp-content/plugins/elementor/core/base/document.php:1200
+[0x00007c4ea3e13490] print_elements_with_wrapper() /www/wp-content/plugins/elementor/includes/frontend.php:1172
+[0x00007c4ea3e13040] get_builder_content() /www/wp-content/plugins/elementor/includes/frontend.php:1240
+[0x00007c4ea3e12e20] get_builder_content_for_display() /www/wp-content/plugins/header-footer-elementor/inc/class-header-footer-elementor.php:878
+[0x00007c4ea3e12da0] get_header_content() /www/wp-content/plugins/header-footer-elementor/inc/hfe-functions.php:89
+ 
+[24-Oct-2025 12:27:39]  pid 2685
+script_filename = /www/index.php
+[0x00007c4ea3e15750] find_psr4_file() /www/wp-content/plugins/woocommerce/vendor/jetpack-autoloader/class-version-loader.php:90
+[0x00007c4ea3e15640] find_class_file() /www/wp-content/plugins/woocommerce/vendor/jetpack-autoloader/class-php-autoloader.php:85
+[0x00007c4ea3e15570] load_class() /www/wp-content/plugins/elementor/core/base/module.php:351
+[0x00007c4ea3e153b0] init_widgets() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e152d0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15260] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15170] do_action() /www/wp-content/plugins/elementor/includes/managers/widgets.php:159
+[0x00007c4ea3e14f40] init_widgets() /www/wp-content/plugins/elementor/includes/managers/widgets.php:358
+[0x00007c4ea3e14e40] get_widget_types() /www/wp-content/plugins/elementor/includes/elements/container.php:345
+[0x00007c4ea3e14ce0] _get_default_child_type() /www/wp-content/plugins/elementor/includes/base/element-base.php:1516
+[0x00007c4ea3e14c10] get_child_type() /www/wp-content/plugins/elementor/includes/base/element-base.php:377
+[0x00007c4ea3e14ac0] add_child() /www/wp-content/plugins/elementor/includes/base/element-base.php:1561
+[0x00007c4ea3e149e0] init_children() /www/wp-content/plugins/elementor/includes/base/element-base.php:322
+[0x00007c4ea3e14950] get_children() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:39
+[0x00007c4ea3e14850] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14750] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14650] render_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:178
+[0x00007c4ea3e14520] render_css() /www/wp-content/plugins/elementor/core/files/css/base.php:687
+[0x00007c4ea3e14340] parse_content() /www/wp-content/plugins/elementor/core/files/base.php:180
+[0x00007c4ea3e142a0] update_file() /www/wp-content/plugins/elementor/core/files/css/base.php:133
+ 
+[24-Oct-2025 12:27:39]  pid 2760
+script_filename = /www/index.php
+[0x00007c4ea3e148e0] sizeFromCtrlByte() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader/Decoder.php:109
+[0x00007c4ea3e145c0] decode() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:107
+[0x00007c4ea3e141b0] __construct() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-database-service.php:158
+[0x00007c4ea3e13f80] get_iso_country_code_for_ip() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-geolocation.php:227
+[0x00007c4ea3e13e70] get_geolocation() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13d90] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e13ca0] apply_filters() /www/wp-content/plugins/woocommerce/includes/class-wc-geolocation.php:184
+[0x00007c4ea3e13bd0] geolocate_ip() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/functions/alg-wc-pgbcl-functions-frontend.php:117
+[0x00007c4ea3e13b50] alg_wc_gateways_by_location_get_country_by_ip() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/functions/alg-wc-pgbcl-functions-frontend.php:29
+[0x00007c4ea3e13a50] alg_wc_gateways_by_location_get_location() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/class-alg-wc-pgbcl-core.php:133
+[0x00007c4ea3e13940] available_payment_gateways() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13860] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e13780] apply_filters() /www/wp-content/plugins/woocommerce/includes/class-wc-payment-gateways.php:376
+[0x00007c4ea3e13560] get_available_payment_gateways() /www/wp-content/plugins/finix-for-woocommerce/src/Gateways/PaymentMethods/FinixMethod.php:30
+[0x00007c4ea3e13390] is_active() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:28
+[0x00007c4ea3e13320] Automattic\WooCommerce\Blocks\Payments\{closure}() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:25
+[0x00007c4ea3e132b0] array_filter() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:25
+[0x00007c4ea3e13250] get_all_active_registered() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:40
+[0x00007c4ea3e131a0] get_all_active_payment_method_script_dependencies() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/Api.php:133
+[0x00007c4ea3e13060] verify_payment_methods_dependencies() /wordpress/wp-includes/class-wp-hook.php:324
+ 
+[24-Oct-2025 12:50:14]  pid 2906
+script_filename = /www/index.php
+[0x00007c4ea3e14b70] fread() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:352
+[0x00007c4ea3e14850] findMetadataStart() /www/wp-content/plugins/woocommerce/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:105
+[0x00007c4ea3e14440] __construct() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-database-service.php:158
+[0x00007c4ea3e14210] get_iso_country_code_for_ip() /www/wp-content/plugins/woocommerce/includes/integrations/maxmind-geolocation/class-wc-integration-maxmind-geolocation.php:227
+[0x00007c4ea3e14100] get_geolocation() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e14020] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e13f30] apply_filters() /www/wp-content/plugins/woocommerce/includes/class-wc-geolocation.php:184
+[0x00007c4ea3e13e60] geolocate_ip() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/functions/alg-wc-pgbcl-functions-frontend.php:117
+[0x00007c4ea3e13de0] alg_wc_gateways_by_location_get_country_by_ip() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/functions/alg-wc-pgbcl-functions-frontend.php:29
+[0x00007c4ea3e13ce0] alg_wc_gateways_by_location_get_location() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/class-alg-wc-pgbcl-core.php:133
+[0x00007c4ea3e13bd0] available_payment_gateways() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13af0] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e13a10] apply_filters() /www/wp-content/plugins/woocommerce/includes/class-wc-payment-gateways.php:376
+[0x00007c4ea3e137f0] get_available_payment_gateways() /www/wp-content/plugins/finix-for-woocommerce/src/Gateways/PaymentMethods/FinixMethod.php:30
+[0x00007c4ea3e13620] is_active() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:28
+[0x00007c4ea3e135b0] Automattic\WooCommerce\Blocks\Payments\{closure}() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:25
+[0x00007c4ea3e13540] array_filter() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:25
+[0x00007c4ea3e134e0] get_all_active_registered() /www/wp-content/plugins/woocommerce/src/Blocks/Payments/PaymentMethodRegistry.php:40
+[0x00007c4ea3e13430] get_all_active_payment_method_script_dependencies() /www/wp-content/plugins/woocommerce/src/Blocks/BlockTypes/MiniCart.php:315
+[0x00007c4ea3e12eb0] print_lazy_load_scripts() /wordpress/wp-includes/class-wp-hook.php:324
+ 
+[24-Oct-2025 15:11:01]  pid 3142
+script_filename = /www/index.php
+[0x00007c4ea3e13390] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e12cb0] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e12bb0] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e12a20] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e12980] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e128f0] wp_remote_post() /www/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php:186
+[0x00007c4ea3e126b0] test_cron() /www/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php:210
+[0x00007c4ea3e124f0] install_actions() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12410] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e123a0] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e122e0] do_action_ref_array() /wordpress/wp-includes/class-wp.php:835
+[0x00007c4ea3e12250] main() /wordpress/wp-includes/functions.php:1342
+[0x00007c4ea3e121b0] wp() /wordpress/wp-blog-header.php:16
+[0x00007c4ea3e120b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 15:11:01]  pid 3164
+script_filename = /www/index.php
+[0x00007c4ea3e13df0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13710] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13610] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 15:11:01]  pid 3141
+script_filename = /www/index.php
+[0x00007c4ea3e13390] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e12cb0] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e12bb0] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e12a20] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e12980] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e128f0] wp_remote_post() /www/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php:186
+[0x00007c4ea3e126b0] test_cron() /www/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php:210
+[0x00007c4ea3e124f0] install_actions() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12410] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e123a0] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e122e0] do_action_ref_array() /wordpress/wp-includes/class-wp.php:835
+[0x00007c4ea3e12250] main() /wordpress/wp-includes/functions.php:1342
+[0x00007c4ea3e121b0] wp() /wordpress/wp-blog-header.php:16
+[0x00007c4ea3e120b0] [INCLUDE_OR_EVAL]() /www/index.php:17
+ 
+[24-Oct-2025 15:39:44]  pid 3200
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e158d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e15860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e157f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e156a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e155c0] do_action() /wordpress/wp-admin/admin-ajax.php:207
+ 
+[24-Oct-2025 17:14:42]  pid 3173
+script_filename = /www/index.php
+[0x00007c4ea3e13df0] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13710] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13610] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 20:27:57]  pid 3379
+script_filename = /www/index.php
+[0x00007c4ea3e13e10] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13730] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13630] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e134a0] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e13410] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13390] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131c0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13120] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13060] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fd0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12eb0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12e10] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d60] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12cb0] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c40] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b60] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12af0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e12a10] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129c0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e12900] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+ 
+[24-Oct-2025 20:33:14]  pid 3373
+script_filename = /www/index.php
+[0x00007c4ea3e15650] get_stack() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:315
+[0x00007c4ea3e15470] get_controls() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:2271
+[0x00007c4ea3e152a0] get_init_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:143
+[0x00007c4ea3e15230] ensure_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:40
+[0x00007c4ea3e151c0] get_settings() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1178
+[0x00007c4ea3e150c0] get_parsed_dynamic_settings() /www/wp-content/plugins/elementor/core/files/css/post.php:315
+[0x00007c4ea3e14b10] render_element_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:297
+[0x00007c4ea3e14a50] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:36
+[0x00007c4ea3e14950] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14850] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14750] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14650] render_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:178
+[0x00007c4ea3e14520] render_css() /www/wp-content/plugins/elementor/core/files/css/base.php:687
+[0x00007c4ea3e14340] parse_content() /www/wp-content/plugins/elementor/core/files/base.php:180
+[0x00007c4ea3e142a0] update_file() /www/wp-content/plugins/elementor/core/files/css/base.php:133
+[0x00007c4ea3e14100] update() /www/wp-content/plugins/elementor/core/files/css/base.php:229
+[0x00007c4ea3e13c60] enqueue() /www/wp-content/plugins/elementor/core/files/css/post.php:201
+[0x00007c4ea3e13b70] enqueue() /www/wp-content/plugins/elementor/core/dynamic-tags/manager.php:478
+[0x00007c4ea3e13a70] after_enqueue_post_css() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13990] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+ 
+[24-Oct-2025 20:33:14]  pid 3398
+script_filename = /www/index.php
+[0x00007c4ea3e182a0] get_init_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:143
+[0x00007c4ea3e18230] ensure_settings() /www/wp-content/plugins/elementor/core/base/base-object.php:40
+[0x00007c4ea3e181c0] get_settings() /www/wp-content/plugins/elementor/includes/base/controls-stack.php:1178
+[0x00007c4ea3e180c0] get_parsed_dynamic_settings() /www/wp-content/plugins/elementor/core/files/css/post.php:315
+[0x00007c4ea3e17b10] render_element_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:297
+[0x00007c4ea3e17a50] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:36
+[0x00007c4ea3e17950] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e17850] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e17750] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e17650] render_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:178
+[0x00007c4ea3e17520] render_css() /www/wp-content/plugins/elementor/core/files/css/base.php:687
+[0x00007c4ea3e17340] parse_content() /www/wp-content/plugins/elementor/core/files/base.php:180
+[0x00007c4ea3e172a0] update_file() /www/wp-content/plugins/elementor/core/files/css/base.php:133
+[0x00007c4ea3e17100] update() /www/wp-content/plugins/elementor/core/files/css/base.php:229
+[0x00007c4ea3e16c60] enqueue() /www/wp-content/plugins/elementor/core/files/css/post.php:201
+[0x00007c4ea3e16b70] enqueue() /www/wp-content/plugins/elementor/core/dynamic-tags/manager.php:478
+[0x00007c4ea3e16a70] after_enqueue_post_css() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e16990] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e16920] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e16830] do_action() /www/wp-content/plugins/elementor/core/files/css/base.php:276
+ 
+[24-Oct-2025 21:28:36]  pid 3422
+script_filename = /www/index.php
+[0x00007c4ea3e13730] gethostbyname() /wordpress/wp-includes/http.php:584
+[0x00007c4ea3e13610] wp_http_validate_url() /wordpress/wp-includes/class-wp-http.php:285
+[0x00007c4ea3e13480] request() /wordpress/wp-includes/http.php:53
+[0x00007c4ea3e133f0] wp_safe_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:143
+[0x00007c4ea3e13370] do_remote_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/api/class-sv-wc-api-base.php:108
+[0x00007c4ea3e131a0] perform_request() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/api/class-wc-authorize-net-cim-api.php:776
+[0x00007c4ea3e13100] get_merchant_details() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/class-wc-gateway-authorize-net-cim.php:1195
+[0x00007c4ea3e13040] get_client_key() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/src/Payment_Form.php:159
+[0x00007c4ea3e12fb0] get_js_handler_args() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:168
+[0x00007c4ea3e12e90] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1148
+[0x00007c4ea3e12df0] get_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/Handlers/Script_Handler.php:135
+[0x00007c4ea3e12d40] get_safe_handler_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1097
+[0x00007c4ea3e12c90] render_js() /www/wp-content/plugins/woocommerce-gateway-authorize-net-cim/vendor/skyverge/wc-plugin-framework/woocommerce/payment-gateway/class-sv-wc-payment-gateway-payment-form.php:1050
+[0x00007c4ea3e12c20] maybe_render_js() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/general-template.php:3208
+[0x00007c4ea3e129a0] wp_footer() /www/wp-content/themes/astra/footer.php:33
+[0x00007c4ea3e128e0] [INCLUDE_OR_EVAL]() /wordpress/wp-includes/template.php:810
+[0x00007c4ea3e12780] load_template() /wordpress/wp-includes/template.php:745
+ 
+[24-Oct-2025 21:34:26]  pid 3445
+script_filename = /www/.wordpress/wp-admin/index.php
+[0x00007c4ea3e16d80] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e166a0] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e165a0] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e16410] request() /wordpress/wp-includes/class-wp-http.php:656
+[0x00007c4ea3e16370] get() /wordpress/wp-includes/http.php:177
+[0x00007c4ea3e162e0] wp_remote_get() /www/wp-content/plugins/really-simple-ssl/class-admin.php:1552
+[0x00007c4ea3e16220] mixed_content_fixer_detected() /www/wp-content/plugins/really-simple-ssl/class-admin.php:2632
+[0x00007c4ea3e16130] validate_function() /www/wp-content/plugins/really-simple-ssl/class-admin.php:2456
+[0x00007c4ea3e15eb0] get_notices_list() /www/wp-content/plugins/really-simple-ssl/class-admin.php:2682
+[0x00007c4ea3e15dd0] count_plusones() /www/wp-content/plugins/really-simple-ssl/settings/settings.php:179
+[0x00007c4ea3e15d00] rsssl_add_top_level_menu() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15c20] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15bb0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15ac0] do_action() /wordpress/wp-admin/includes/menu.php:161
+[0x00007c4ea3e14f50] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/menu.php:423
+[0x00007c4ea3e12ea0] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/admin.php:159
+[0x00007c4ea3e12ce0] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/index.php:10
+ 
+[24-Oct-2025 21:34:40]  pid 3459
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 21:37:45]  pid 3447
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 21:47:45]  pid 3480
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:10:14]  pid 3447
+script_filename = /www/.wordpress/wp-admin/update-core.php
+[0x00007c4ea3e14620] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e13f40] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e13e40] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e13cb0] request() /wordpress/wp-includes/class-wp-http.php:638
+[0x00007c4ea3e13c10] post() /wordpress/wp-includes/http.php:196
+[0x00007c4ea3e13b80] wp_remote_post() /wordpress/wp-includes/update.php:213
+[0x00007c4ea3e13910] wp_version_check() /wordpress/wp-admin/update-core.php:1062
+ 
+[24-Oct-2025 22:12:22]  pid 3480
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:12:24]  pid 3459
+script_filename = /www/.wordpress/wp-admin/update.php
+[0x00007c4ea3e14670] getFromIndex() /wordpress/wp-admin/includes/file.php:1822
+[0x00007c4ea3e144d0] _unzip_file_ziparchive() /wordpress/wp-admin/includes/file.php:1651
+[0x00007c4ea3e143e0] unzip_file() /wordpress/wp-admin/includes/class-wp-upgrader.php:384
+[0x00007c4ea3e142e0] unpack_package() /wordpress/wp-admin/includes/class-wp-upgrader.php:887
+[0x00007c4ea3e14200] run() /wordpress/wp-admin/includes/class-plugin-upgrader.php:378
+[0x00007c4ea3e14090] bulk_upgrade() /wordpress/wp-admin/update.php:51
+ 
+[24-Oct-2025 22:14:04]  pid 3447
+script_filename = /www/.wordpress/wp-login.php
+[0x00007c4ea3e12810] __construct() /www/wp-content/themes/astra/inc/modules/posts-structures/class-astra-post-structures.php:44
+[0x00007c4ea3e127a0] [INCLUDE_OR_EVAL]() /www/wp-content/themes/astra/functions.php:157
+[0x00007c4ea3e12730] [INCLUDE_OR_EVAL]() /wordpress/wp-settings.php:698
+[0x00007c4ea3e12530] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e124b0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e12440] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e123a0] [INCLUDE_OR_EVAL]() /wordpress/wp-login.php:12
+ 
+[24-Oct-2025 22:14:04]  pid 3480
+script_filename = /www/.wordpress/wp-login.php
+[0x00007c4ea3e12810] __construct() /www/wp-content/themes/astra/inc/modules/posts-structures/class-astra-post-structures.php:44
+[0x00007c4ea3e127a0] [INCLUDE_OR_EVAL]() /www/wp-content/themes/astra/functions.php:157
+[0x00007c4ea3e12730] [INCLUDE_OR_EVAL]() /wordpress/wp-settings.php:698
+[0x00007c4ea3e12530] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e124b0] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e12440] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e123a0] [INCLUDE_OR_EVAL]() /wordpress/wp-login.php:12
+ 
+[24-Oct-2025 22:16:35]  pid 3459
+script_filename = /www/.wordpress/wp-admin/edit-comments.php
+[0x00007c4ea3e159b0] mysqli_query() /wordpress/wp-includes/class-wpdb.php:2351
+[0x00007c4ea3e15940] _do_query() /wordpress/wp-includes/class-wpdb.php:2265
+[0x00007c4ea3e15860] query() /wordpress/wp-includes/class-wpdb.php:3065
+[0x00007c4ea3e15790] get_row() /wordpress/wp-includes/option.php:206
+[0x00007c4ea3e15670] get_option() /www/wp-content/plugins/optinmonster/OMAPI/Actions.php:199
+[0x00007c4ea3e15390] check_upgrade_routines() /www/wp-content/plugins/optinmonster/OMAPI/Actions.php:184
+[0x00007c4ea3e152d0] check_upgrade_routines_admin() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e151f0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e15180] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e150a0] do_action() /wordpress/wp-admin/admin.php:176
+[0x00007c4ea3e13d20] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/edit-comments.php:10
+ 
+[24-Oct-2025 22:16:35]  pid 3637
+script_filename = /www/index.php
+[0x00007c4ea3e150f0] init_widgets() /www/wp-content/plugins/elementor/includes/managers/widgets.php:358
+[0x00007c4ea3e14ff0] get_widget_types() /www/wp-content/plugins/elementor/includes/elements/container.php:345
+[0x00007c4ea3e14e90] _get_default_child_type() /www/wp-content/plugins/elementor/includes/base/element-base.php:1516
+[0x00007c4ea3e14dc0] get_child_type() /www/wp-content/plugins/elementor/includes/base/element-base.php:377
+[0x00007c4ea3e14c70] add_child() /www/wp-content/plugins/elementor/includes/base/element-base.php:1561
+[0x00007c4ea3e14b90] init_children() /www/wp-content/plugins/elementor/includes/base/element-base.php:322
+[0x00007c4ea3e14b00] get_children() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:39
+[0x00007c4ea3e14a00] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14900] render_styles() /www/wp-content/plugins/elementor/core/dynamic-tags/dynamic-css.php:40
+[0x00007c4ea3e14800] render_styles() /www/wp-content/plugins/elementor/core/files/css/post.php:178
+[0x00007c4ea3e146d0] render_css() /www/wp-content/plugins/elementor/core/files/css/base.php:687
+[0x00007c4ea3e144f0] parse_content() /www/wp-content/plugins/elementor/core/files/base.php:180
+[0x00007c4ea3e14450] update_file() /www/wp-content/plugins/elementor/core/files/css/base.php:133
+[0x00007c4ea3e142b0] update() /www/wp-content/plugins/elementor/core/files/css/base.php:229
+[0x00007c4ea3e13e10] enqueue() /www/wp-content/plugins/elementor/core/files/css/post.php:201
+[0x00007c4ea3e13d20] enqueue() /www/wp-content/plugins/elementor/core/dynamic-tags/manager.php:478
+[0x00007c4ea3e13c20] after_enqueue_post_css() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13b40] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e13ad0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e139e0] do_action() /www/wp-content/plugins/elementor/core/files/css/base.php:276
+ 
+[24-Oct-2025 22:16:37]  pid 3622
+script_filename = /www/index.php
+[0x00007c4ea3e14a50] getApiRequestVersion() /www/wp-content/plugins/woocommerce-multilingual/classes/Rest/Functions.php:31
+[0x00007c4ea3e14870] isRestApiRequest() /www/wp-content/plugins/woocommerce-multilingual/inc/currencies/class-wcml-multi-currency.php:456
+[0x00007c4ea3e14680] get_client_currency() /www/wp-content/plugins/woocommerce-multilingual/inc/currencies/class-wcml-multi-currency.php:202
+[0x00007c4ea3e14440] are_filters_need_loading() /www/wp-content/plugins/woocommerce-multilingual/inc/currencies/class-wcml-multi-currency-prices.php:794
+[0x00007c4ea3e143a0] is_multi_currency_filters_loaded() /www/wp-content/plugins/woocommerce-multilingual/inc/currencies/class-wcml-multi-currency-prices.php:236
+[0x00007c4ea3e140b0] product_price_filter() /wordpress/wp-includes/class-wp-hook.php:326
+[0x00007c4ea3e13fd0] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e13eb0] apply_filters() /wordpress/wp-includes/meta.php:647
+[0x00007c4ea3e13dd0] get_metadata_raw() /wordpress/wp-includes/meta.php:586
+[0x00007c4ea3e13d20] get_metadata() /wordpress/wp-includes/post.php:2665
+[0x00007c4ea3e13c90] get_post_meta() /www/wp-content/plugins/elementor/core/base/document.php:1490
+[0x00007c4ea3e13c00] get_meta() /www/wp-content/plugins/elementor/core/base/document.php:926
+[0x00007c4ea3e13b90] is_built_with_elementor() /www/wp-content/plugins/elementor/core/files/css/post.php:197
+[0x00007c4ea3e13aa0] enqueue() /www/wp-content/plugins/elementor/includes/frontend.php:1148
+[0x00007c4ea3e13650] get_builder_content() /www/wp-content/plugins/elementor/core/base/document.php:1249
+[0x00007c4ea3e135a0] get_content() /www/wp-content/plugins/elementor/modules/library/documents/library-document.php:82
+[0x00007c4ea3e13420] get_content() /www/wp-content/plugins/elementor-pro/modules/theme-builder/documents/theme-document.php:158
+[0x00007c4ea3e13370] get_content() /www/wp-content/plugins/elementor-pro/modules/theme-builder/documents/theme-document.php:173
+[0x00007c4ea3e13290] print_content() /www/wp-content/plugins/elementor-pro/modules/theme-builder/classes/locations-manager.php:315
+[0x00007c4ea3e12ee0] do_location() /www/wp-content/themes/astra/inc/compatibility/class-astra-elementor-pro.php:424
+ 
+[24-Oct-2025 22:16:52]  pid 3459
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:18:02]  pid 3730
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e158d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e15860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e157f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e156a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e155c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:23:35]  pid 3730
+script_filename = /www/.wordpress/wp-admin/update.php
+[0x00007c4ea3e15e20] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e15740] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e15640] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e154b0] request() /wordpress/wp-includes/class-wp-http.php:656
+[0x00007c4ea3e15410] get() /wordpress/wp-includes/http.php:177
+[0x00007c4ea3e15380] wp_remote_get() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:894
+[0x00007c4ea3e15260] download() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:1039
+[0x00007c4ea3e14e80] download_plugin_vulnerabilities() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:223
+[0x00007c4ea3e14d70] reload_files_on_update() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e14c90] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e14c20] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e14b20] do_action() /wordpress/wp-admin/includes/class-wp-upgrader.php:988
+[0x00007c4ea3e142d0] run() /wordpress/wp-admin/includes/class-plugin-upgrader.php:135
+[0x00007c4ea3e14090] install() /wordpress/wp-admin/update.php:180
+ 
+[24-Oct-2025 22:24:02]  pid 3737
+script_filename = /www/.wordpress/wp-admin/plugins.php
+[0x00007c4ea3e13400] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e12d20] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e12c20] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e12a90] request() /wordpress/wp-includes/class-wp-http.php:656
+[0x00007c4ea3e129f0] get() /wordpress/wp-includes/http.php:177
+[0x00007c4ea3e12960] wp_remote_get() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:894
+[0x00007c4ea3e128c0] download() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:1039
+[0x00007c4ea3e127a0] download_plugin_vulnerabilities() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:223
+[0x00007c4ea3e12700] reload_files_on_update() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12620] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e125b0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e124b0] do_action() /wordpress/wp-admin/includes/plugin.php:688
+[0x00007c4ea3e123c0] activate_plugin() /wordpress/wp-admin/plugins.php:60
+ 
+[24-Oct-2025 22:26:47]  pid 3854
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:28:46]  pid 3954
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e158d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e15860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e157f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e156a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e155c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:30:47]  pid 3955
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:35:49]  pid 3966
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:36:34]  pid 3974
+script_filename = /www/.wordpress/wp-admin/update.php
+[0x00007c4ea3e14b80] unlink() /wordpress/wp-admin/includes/class-wp-filesystem-direct.php:382
+[0x00007c4ea3e14aa0] delete() /www/wp-content/plugins/wp-rocket/inc/functions/files.php:392
+[0x00007c4ea3e14920] rocket_clean_minify() /www/wp-content/plugins/wp-rocket/inc/ThirdParty/Plugins/PageBuilder/Elementor.php:95
+[0x00007c4ea3e148b0] clear_cache() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e147d0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e14760] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e14680] do_action() /www/wp-content/plugins/elementor/core/files/manager.php:130
+[0x00007c4ea3e14500] clear_cache() /www/wp-content/plugins/elementor/modules/element-cache/module.php:157
+[0x00007c4ea3e14470] clear_cache() /wordpress/wp-includes/class-wp-hook.php:326
+[0x00007c4ea3e14390] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e14320] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e14220] do_action() /wordpress/wp-admin/includes/class-wp-upgrader.php:988
+[0x00007c4ea3e14140] run() /wordpress/wp-admin/includes/class-plugin-upgrader.php:135
+[0x00007c4ea3e14090] install() /wordpress/wp-admin/update.php:180
+ 
+[24-Oct-2025 22:37:06]  pid 3974
+script_filename = /www/.wordpress/wp-admin/plugins.php
+[0x00007c4ea3e13af0] autoload() /www/wp-content/plugins/woocommerce-multilingual/vendor/otgs/installer/includes/class-otgs-installer-factory.php:208
+[0x00007c4ea3e13a50] create_debug_info_hook() /www/wp-content/plugins/woocommerce-multilingual/vendor/otgs/installer/includes/class-otgs-installer-factory.php:212
+[0x00007c4ea3e139b0] load_debug_info_hooks() /www/wp-content/plugins/woocommerce-multilingual/vendor/otgs/installer/includes/class-otgs-installer-loader.php:24
+[0x00007c4ea3e13850] load_actions_after_installer_init() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e13770] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e13700] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e13620] do_action() /www/wp-content/plugins/woocommerce-multilingual/vendor/otgs/installer/includes/class-wp-installer.php:254
+[0x00007c4ea3e12b40] init() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a60] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e12910] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e12710] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e12690] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e12620] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e12580] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/admin.php:35
+[0x00007c4ea3e123c0] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/plugins.php:10
+ 
+[24-Oct-2025 22:37:19]  pid 3975
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e131f0] usleep() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Controller/PreloadUrl.php:151
+[0x00007c4ea3e13110] preload_url() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Frontend/Subscriber.php:86
+[0x00007c4ea3e13090] preload_url() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12fb0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12f40] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e12e80] do_action_ref_array() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/actions/ActionScheduler_Action.php:86
+[0x00007c4ea3e12d70] execute() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/abstracts/ActionScheduler_Abstract_QueueRunner.php:103
+[0x00007c4ea3e12c90] process_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:188
+[0x00007c4ea3e12bc0] do_batch() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:158
+[0x00007c4ea3e12b10] run() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a30] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129c0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e128d0] do_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:48
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:39:11]  pid 4075
+script_filename = /www/.wordpress/wp-admin/plugins.php
+[0x00007c4ea3e16790] __construct() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/settings/class-alg-wc-settings-pgbcl.php:110
+[0x00007c4ea3e16700] [INCLUDE_OR_EVAL]() /www/wp-content/plugins/payment-gateways-by-customer-location-for-woocommerce-pro/includes/class-alg-wc-pgbcl.php:177
+[0x00007c4ea3e16680] add_woocommerce_settings_tab() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e165a0] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e164c0] apply_filters() /www/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-settings.php:70
+[0x00007c4ea3e16250] get_settings_pages() /www/wp-content/plugins/woocommerce/includes/class-woocommerce.php:1350
+[0x00007c4ea3e16190] register_wp_admin_settings() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e160b0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e16040] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e15f50] do_action() /wordpress/wp-includes/rest-api.php:628
+[0x00007c4ea3e15ec0] rest_get_server() /wordpress/wp-includes/rest-api.php:586
+[0x00007c4ea3e15e50] rest_do_request() /wordpress/wp-includes/rest-api.php:2973
+[0x00007c4ea3e15d30] rest_preload_api_request() /www/wp-content/plugins/woocommerce/src/Internal/Admin/Settings.php:148
+[0x00007c4ea3e15cc0] array_reduce() /www/wp-content/plugins/woocommerce/src/Internal/Admin/Settings.php:148
+[0x00007c4ea3e15b30] add_component_settings() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e15a50] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e15970] apply_filters() /www/wp-content/plugins/woocommerce/src/Internal/Admin/WCAdminSharedSettings.php:73
+[0x00007c4ea3e15910] Automattic\WooCommerce\Internal\Admin\{closure}() /www/wp-content/plugins/woocommerce/src/Blocks/Assets/AssetDataRegistry.php:271
+[0x00007c4ea3e15870] execute_lazy_data() /www/wp-content/plugins/woocommerce/src/Blocks/Assets/AssetDataRegistry.php:387
+[0x00007c4ea3e157b0] enqueue_asset_data() /wordpress/wp-includes/class-wp-hook.php:324
+ 
+[24-Oct-2025 22:39:18]  pid 3974
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:40:23]  pid 4075
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:43:24]  pid 4075
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:43:31]  pid 4178
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:45:24]  pid 4075
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:46:39]  pid 4178
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:47:59]  pid 4189
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e131f0] usleep() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Controller/PreloadUrl.php:151
+[0x00007c4ea3e13110] preload_url() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Frontend/Subscriber.php:86
+[0x00007c4ea3e13090] preload_url() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12fb0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12f40] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e12e80] do_action_ref_array() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/actions/ActionScheduler_Action.php:86
+[0x00007c4ea3e12d70] execute() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/abstracts/ActionScheduler_Abstract_QueueRunner.php:103
+[0x00007c4ea3e12c90] process_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:188
+[0x00007c4ea3e12bc0] do_batch() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:158
+[0x00007c4ea3e12b10] run() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a30] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129c0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e128d0] do_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:48
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:49:58]  pid 4189
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:50:59]  pid 4179
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:52:14]  pid 4179
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e128d0] sleep() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:53
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:52:51]  pid 4179
+script_filename = /www/.wordpress/wp-admin/update.php
+[0x00007c4ea3e15170] curl_exec() /wordpress/wp-includes/Requests/src/Transport/Curl.php:204
+[0x00007c4ea3e14a90] request() /wordpress/wp-includes/Requests/src/Requests.php:469
+[0x00007c4ea3e14990] request() /wordpress/wp-includes/class-wp-http.php:415
+[0x00007c4ea3e14800] request() /wordpress/wp-includes/class-wp-http.php:656
+[0x00007c4ea3e14760] get() /wordpress/wp-includes/http.php:177
+[0x00007c4ea3e146d0] wp_remote_get() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:894
+[0x00007c4ea3e14630] download() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:1039
+[0x00007c4ea3e14510] download_plugin_vulnerabilities() /www/wp-content/plugins/really-simple-ssl/security/wordpress/vulnerabilities.php:223
+[0x00007c4ea3e14470] reload_files_on_update() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e14390] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e14320] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e14220] do_action() /wordpress/wp-admin/includes/class-wp-upgrader.php:988
+[0x00007c4ea3e14140] run() /wordpress/wp-admin/includes/class-plugin-upgrader.php:135
+[0x00007c4ea3e14090] install() /wordpress/wp-admin/update.php:180
+ 
+[24-Oct-2025 22:53:01]  pid 4202
+script_filename = /www/.wordpress/wp-admin/plugins.php
+[0x00007c4ea3e134a0] str_replace() /wordpress/wp-includes/blocks.php:74
+[0x00007c4ea3e133f0] generate_block_asset_handle() /wordpress/wp-includes/blocks.php:294
+[0x00007c4ea3e13270] register_block_style_handle() /wordpress/wp-includes/blocks.php:672
+[0x00007c4ea3e13040] register_block_type_from_metadata() /www/wp-content/plugins/woocommerce/src/Blocks/BlockTypes/AbstractBlock.php:245
+[0x00007c4ea3e12e00] register_block_type() /www/wp-content/plugins/woocommerce/src/Blocks/BlockTypes/AbstractBlock.php:138
+[0x00007c4ea3e12d00] initialize() /www/wp-content/plugins/woocommerce/src/Blocks/BlockTypes/AbstractBlock.php:71
+[0x00007c4ea3e12c00] __construct() /www/wp-content/plugins/woocommerce/src/Blocks/BlockTypesController.php:117
+[0x00007c4ea3e12b40] register_blocks() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a60] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129f0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e12910] do_action() /wordpress/wp-settings.php:730
+[0x00007c4ea3e12710] [INCLUDE_OR_EVAL]() /www/wp-config.php:110
+[0x00007c4ea3e12690] [INCLUDE_OR_EVAL]() /wordpress/wp-config.php:5
+[0x00007c4ea3e12620] [INCLUDE_OR_EVAL]() /wordpress/wp-load.php:50
+[0x00007c4ea3e12580] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/admin.php:35
+[0x00007c4ea3e123c0] [INCLUDE_OR_EVAL]() /wordpress/wp-admin/plugins.php:10
+ 
+[24-Oct-2025 22:53:16]  pid 4202
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e131f0] usleep() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Controller/PreloadUrl.php:151
+[0x00007c4ea3e13110] preload_url() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Frontend/Subscriber.php:86
+[0x00007c4ea3e13090] preload_url() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12fb0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12f40] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e12e80] do_action_ref_array() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/actions/ActionScheduler_Action.php:86
+[0x00007c4ea3e12d70] execute() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/abstracts/ActionScheduler_Abstract_QueueRunner.php:103
+[0x00007c4ea3e12c90] process_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:188
+[0x00007c4ea3e12bc0] do_batch() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:158
+[0x00007c4ea3e12b10] run() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a30] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129c0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e128d0] do_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:48
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:54:24]  pid 4202
+script_filename = /www/.wordpress/wp-admin/admin-ajax.php
+[0x00007c4ea3e131f0] usleep() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Controller/PreloadUrl.php:151
+[0x00007c4ea3e13110] preload_url() /www/wp-content/plugins/wp-rocket/inc/Engine/Preload/Frontend/Subscriber.php:86
+[0x00007c4ea3e13090] preload_url() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12fb0] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e12f40] do_action() /wordpress/wp-includes/plugin.php:565
+[0x00007c4ea3e12e80] do_action_ref_array() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/actions/ActionScheduler_Action.php:86
+[0x00007c4ea3e12d70] execute() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/abstracts/ActionScheduler_Abstract_QueueRunner.php:103
+[0x00007c4ea3e12c90] process_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:188
+[0x00007c4ea3e12bc0] do_batch() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_QueueRunner.php:158
+[0x00007c4ea3e12b10] run() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12a30] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e129c0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e128d0] do_action() /www/wp-content/plugins/seo-by-rank-math/vendor/woocommerce/action-scheduler/classes/ActionScheduler_AsyncRequest_QueueRunner.php:48
+[0x00007c4ea3e12860] handle() /www/wp-content/plugins/astra-sites/inc/lib/starter-templates-importer/importer/helpers/wp-async-request.php:154
+[0x00007c4ea3e127f0] maybe_handle() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e12710] apply_filters() /wordpress/wp-includes/class-wp-hook.php:348
+[0x00007c4ea3e126a0] do_action() /wordpress/wp-includes/plugin.php:517
+[0x00007c4ea3e125c0] do_action() /wordpress/wp-admin/admin-ajax.php:192
+ 
+[24-Oct-2025 22:55:31]  pid 4202
+script_filename = /www/.wordpress/wp-admin/plugins.php
+[0x00007c4ea3e14cb0] mysqli_query() /wordpress/wp-includes/class-wpdb.php:2351
+[0x00007c4ea3e14c40] _do_query() /wordpress/wp-includes/class-wpdb.php:2265
+[0x00007c4ea3e14b60] query() /wordpress/wp-includes/class-wpdb.php:3065
+[0x00007c4ea3e14a90] get_row() /wordpress/wp-includes/option.php:206
+[0x00007c4ea3e14970] get_option() /www/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-settings-api.php:281
+[0x00007c4ea3e148f0] init_settings() /www/wp-content/plugins/woocommerce/includes/emails/class-wc-email.php:312
+[0x00007c4ea3e145c0] __construct() /www/wp-content/plugins/woocommerce-subscriptions/includes/core/emails/class-wcs-email-new-switch-order.php:40
+[0x00007c4ea3e143f0] __construct() /www/wp-content/plugins/woocommerce-subscriptions/includes/core/class-wc-subscriptions-email.php:58
+[0x00007c4ea3e14330] add_emails() /wordpress/wp-includes/class-wp-hook.php:324
+[0x00007c4ea3e14250] apply_filters() /wordpress/wp-includes/plugin.php:205
+[0x00007c4ea3e14170] apply_filters() /www/wp-content/plugins/woocommerce/includes/class-wc-emails.php:306
+[0x00007c4ea3e14100] init() /www/wp-content/plugins/woocommerce/includes/class-wc-emails.php:231
+[0x00007c4ea3e14090] __construct() /www/wp-content/plugins/woocommerce/includes/class-wc-emails.php:59
+[0x00007c4ea3e14020] instance() /www/wp-content/plugins/woocommerce/src/Admin/PageController.php:310
+[0x00007c4ea3e13a60] get_current_screen_id() /www/wp-content/plugins/woocommerce/src/Admin/PageController.php:126
+[0x00007c4ea3e13770] determine_current_page() /www/wp-content/plugins/woocommerce/src/Admin/PageController.php:234
+[0x00007c4ea3e136a0] get_current_page() /www/wp-content/plugins/woocommerce/src/Admin/PageController.php:391
+[0x00007c4ea3e134f0] is_connected_page() /www/wp-content/plugins/woocommerce/includes/react-admin/page-controller-functions.php:40
+[0x00007c4ea3e13480] wc_admin_is_connected_page() /www/wp-content/plugins/woocommerce/src/Admin/PageController.php:606
+[0x00007c4ea3e13420] is_embed_page() /www/wp-content/plugins/woocommerce/src/Internal/Admin/WCAdminAssets.php:332

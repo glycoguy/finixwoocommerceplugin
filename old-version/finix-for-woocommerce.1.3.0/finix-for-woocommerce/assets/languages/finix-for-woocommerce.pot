@@ -1,0 +1,936 @@
+# Copyright (C) 2025 Finix
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Finix for WooCommerce 1.3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/finix-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-10-09T12:02:03+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: finix-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: finix-for-woocommerce.php
+msgid "Finix for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: finix-for-woocommerce.php
+msgid "https://docs.finix.com/additional-resources/plugins/woocommerce-plugin"
+msgstr ""
+
+#. Description of the plugin
+#: finix-for-woocommerce.php
+msgid "Take credit card, ACH, and Apple Pay payments on your store using Finix."
+msgstr ""
+
+#. Author of the plugin
+#: finix-for-woocommerce.php
+msgid "Finix"
+msgstr ""
+
+#. Author URI of the plugin
+#: finix-for-woocommerce.php
+msgid "https://finix.com"
+msgstr ""
+
+#: src/Admin/Admin.php:48
+msgid "Settings"
+msgstr ""
+
+#. translators: %s - current currency code.
+#: src/Admin/Admin.php:73
+#, php-format
+msgid "Finix for WooCommerce does not currently support the currency of your store: %s."
+msgstr ""
+
+#. translators: %s - supported currency codes.
+#: src/Admin/Admin.php:83
+#, php-format
+msgid "<strong>All the payments will be declined.</strong> Supported currencies: %s."
+msgstr ""
+
+#: src/Events/AchPaymentProcessedEvent.php:71
+msgid "Finix payment confirmed."
+msgstr ""
+
+#: src/Events/AchPaymentProcessedEvent.php:80
+msgid "Finix response: payment failed."
+msgstr ""
+
+#: src/Events/AchPaymentProcessedEvent.php:88
+msgid "Finix response: payment confirmation pending."
+msgstr ""
+
+#: src/Events/AchReturnEvent.php:39
+msgid "Finix Webhook response: ACH Return received."
+msgstr ""
+
+#: src/Events/ApplePayPaymentCompletedEvent.php:38
+#: src/Events/CardAchPaymentEvent.php:30
+#: src/Events/CardAchPaymentEvent.php:43
+#: src/Events/CardAchPaymentEvent.php:69
+#: src/Events/CardAchPaymentEvent.php:97
+#: src/Events/CardAchPaymentEvent.php:136
+#: src/Events/GooglePayPaymentCompletedEvent.php:38
+msgid "Payment error: There was an error while processing your payment. Please try again."
+msgstr ""
+
+#: src/Events/ApplePayPaymentCompletedEvent.php:73
+#: src/Events/ApplePayPaymentCompletedEvent.php:84
+#: src/Events/ApplePayPaymentCompletedEvent.php:95
+#: src/Events/ApplePayPaymentCompletedEvent.php:107
+#: src/Events/GooglePayPaymentCompletedEvent.php:73
+#: src/Events/GooglePayPaymentCompletedEvent.php:84
+#: src/Events/GooglePayPaymentCompletedEvent.php:95
+#: src/Events/GooglePayPaymentCompletedEvent.php:107
+msgid "Payment error: There was an error while processing your payment. Please contact support if you were charged."
+msgstr ""
+
+#: src/Events/ApplePayPaymentCompletedEvent.php:112
+#: src/Events/GooglePayPaymentCompletedEvent.php:112
+msgid "Payment error: Could not validate payment. Amounts do not match."
+msgstr ""
+
+#: src/Events/ApplePayPaymentCompletedEvent.php:119
+msgid "Finix Apple Pay payment SUCCEEDED"
+msgstr ""
+
+#: src/Events/ApplePayPaymentEvent.php:79
+#: src/Events/GooglePayPaymentEvent.php:79
+msgid "There was an error while processing your payment."
+msgstr ""
+
+#: src/Events/ApplePayPaymentEvent.php:103
+#: src/Events/GooglePayPaymentEvent.php:103
+msgid "There was an error processing the payment. Please try again later."
+msgstr ""
+
+#: src/Events/ApplePayPaymentEvent.php:128
+#: src/Events/ApplePaySessionEvent.php:40
+#: src/Events/ApplePaySessionEvent.php:50
+#: src/Events/GooglePayPaymentEvent.php:128
+#: src/Gateways/ApplePayGateway.php:558
+#: src/Gateways/GooglePayGateway.php:470
+msgid "There was an error processing the payment."
+msgstr ""
+
+#: src/Events/ApplePayPaymentEvent.php:144
+#: src/Events/GooglePayPaymentEvent.php:144
+#: src/Gateways/ApplePayGateway.php:505
+#: src/Gateways/ApplePayGateway.php:515
+#: src/Gateways/GooglePayGateway.php:432
+#: src/Gateways/GooglePayGateway.php:442
+msgid "There was an error while processing the payment. Please try again later."
+msgstr ""
+
+#: src/Events/ApplePayRegisterDomain.php:21
+#: src/Events/ApplePayRegisterDomain.php:33
+#: src/Events/ApplePayRegisterDomain.php:100
+msgid "Unable to retrieve merchant information, please do a manual registration."
+msgstr ""
+
+#: src/Events/ApplePayRegisterDomain.php:56
+msgid "Domain already registered."
+msgstr ""
+
+#: src/Events/ApplePayRegisterDomain.php:68
+#: src/Events/ApplePayRegisterDomain.php:89
+msgid "Unable to register domain, please do a manual registration."
+msgstr ""
+
+#: src/Events/ApplePayRegisterDomain.php:79
+msgid "Domain was registered successfully."
+msgstr ""
+
+#. translators: %s: Error message from Finix.
+#: src/Events/CardAchPaymentEvent.php:49
+#, php-format
+msgid "Finix Buyer creation failed: %s"
+msgstr ""
+
+#. translators: %s: Buyer ID from Finix.
+#: src/Events/CardAchPaymentEvent.php:61
+#, php-format
+msgid "Finix Buyer created successfully: %s"
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:74
+msgid "Finix Payment method creation failed."
+msgstr ""
+
+#. translators: %s: Error message from Finix.
+#: src/Events/CardAchPaymentEvent.php:105
+#, php-format
+msgid "Finix Payment method creation failed: %s"
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:114
+msgid "Finix Payment method created successfully"
+msgstr ""
+
+#. translators: %s: Error message from Finix.
+#: src/Events/CardAchPaymentEvent.php:144
+#, php-format
+msgid "Finix Payment error: %s"
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:163
+msgid "Payment pending: There was an error while processing your payment. Please try again."
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:169
+msgid "Awaiting payment confirmation from Finix."
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:179
+msgid "Finix Payment processed successfully."
+msgstr ""
+
+#: src/Events/CardAchPaymentEvent.php:191
+msgid "Payment failed: There was an error while processing your payment. Please try again."
+msgstr ""
+
+#. translators: %s: State of the payment.
+#: src/Events/CardAchPaymentEvent.php:198
+#, php-format
+msgid "Finix Payment failed. State: %s"
+msgstr ""
+
+#: src/Events/DisputeEvent.php:71
+msgid "Finix Webhook response: Dispute received."
+msgstr ""
+
+#: src/Events/DisputeEvent.php:86
+msgid "Finix Webhook response: Dispute won."
+msgstr ""
+
+#: src/Events/GooglePayPaymentCompletedEvent.php:119
+msgid "Finix Google Pay payment SUCCEEDED"
+msgstr ""
+
+#: src/Events/RefundEvent.php:85
+msgid "No transaction ID found for this order"
+msgstr ""
+
+#. translators: %s: Error message from Finix.
+#: src/Events/RefundEvent.php:95
+#, php-format
+msgid "Finix Refund failed: %s"
+msgstr ""
+
+#. translators: %1$s: Refund amount, %2$s: Transaction ID.
+#: src/Events/RefundEvent.php:105
+#, php-format
+msgid "Refund processed successfully. Amount: %1$s. Transaction ID: %2$s."
+msgstr ""
+
+#: src/Finix/ApplePay.php:37
+msgid "Domain not found"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:34
+msgid "Finix Apple Pay"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:35
+msgid "Accept Apple Pay payments with Finix."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:40
+#: assets/js/block/src/apple-pay.js:15
+msgid "Pay with Apple Pay"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:82
+#: src/Gateways/BankGateway.php:38
+#: src/Gateways/CardGateway.php:47
+#: src/Gateways/GooglePayGateway.php:81
+msgid "General Settings"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:87
+#: src/Gateways/BankGateway.php:43
+#: src/Gateways/CardGateway.php:52
+#: src/Gateways/GooglePayGateway.php:86
+msgid "Status"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:88
+msgid "Enable Apply Pay Gateway"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:94
+#: src/Gateways/BankGateway.php:50
+#: src/Gateways/CardGateway.php:59
+#: src/Gateways/GooglePayGateway.php:93
+msgid "Title"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:96
+#: src/Gateways/BankGateway.php:52
+#: src/Gateways/CardGateway.php:61
+#: src/Gateways/GooglePayGateway.php:95
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:97
+#: src/Gateways/FinixGateway.php:262
+msgid "Apple Pay"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:101
+#: src/Gateways/BankGateway.php:57
+#: src/Gateways/CardGateway.php:66
+#: src/Gateways/GooglePayGateway.php:100
+msgid "Description"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:103
+#: src/Gateways/BankGateway.php:59
+#: src/Gateways/CardGateway.php:68
+#: src/Gateways/GooglePayGateway.php:102
+msgid "This controls the description which the user sees during checkout. It will be wrapped in the paragraph tag."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:108
+msgid "Button Style"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:110
+msgid "Choose the style for the Apple Pay button."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:112
+msgid "Black"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:113
+msgid "White"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:114
+msgid "White with outline"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:120
+#: src/Gateways/GooglePayGateway.php:119
+msgid "Button Type"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:122
+msgid "Choose the type of the Apple Pay button. This affects wording on a button."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:124
+msgid "Plain"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:125
+msgid "Continue"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:126
+msgid "Add Money"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:127
+msgid "Book"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:128
+msgid "Buy"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:129
+msgid "Check Out"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:130
+msgid "Contribute"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:131
+msgid "Donate"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:132
+msgid "Order"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:133
+msgid "Pay"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:134
+msgid "Reload"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:135
+msgid "Rent"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:136
+msgid "Set Up"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:137
+msgid "Subscribe"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:138
+msgid "Support"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:139
+msgid "Tip"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:140
+msgid "Top Up"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:146
+#: src/Gateways/GooglePayGateway.php:143
+msgid "Display Name"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:148
+msgid "This will be the merchant name shown to users when making a purchase via Apple Pay."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:163
+msgid "Apple Pay Payment Method"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:165
+msgid "Receive payments via Apple Pay with Finix. You can configure the available options on this page."
+msgstr ""
+
+#. translators: %s - plugin version.
+#: src/Gateways/ApplePayGateway.php:169
+msgid "<strong>Note:</strong> Apple Pay with Finix for WooCommerce is only supported with Live Credentials."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:182
+msgid "Register Domain"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:185
+msgid "This plugin attempts to add the domain association to your server automatically when you click the \"Register Domain\" button."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:187
+msgid "In order for Apple Pay to display you must test with an iOS device and have a payment method saved in the Apple Wallet."
+msgstr ""
+
+#. translators: %s - domain name.
+#: src/Gateways/ApplePayGateway.php:195
+#, php-format
+msgid "Register Domain: %s"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:248
+msgid "Registering domain..."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:249
+#: src/Gateways/ApplePayGateway.php:393
+#: src/Gateways/PaymentMethods/ApplePay.php:126
+#: src/Gateways/PaymentMethods/GooglePay.php:131
+msgid "Please enter a valid billing address."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:262
+#: src/Gateways/CardBankGateway.php:79
+#: src/Gateways/GooglePayGateway.php:193
+msgid "TEST MODE ENABLED. All the payments will go through the sandbox."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:392
+#: src/Gateways/ApplePayGateway.php:442
+#: src/Gateways/CardBankGateway.php:60
+#: src/Gateways/GooglePayGateway.php:321
+#: src/Gateways/GooglePayGateway.php:383
+#: src/Gateways/PaymentMethods/ApplePay.php:125
+#: src/Gateways/PaymentMethods/GooglePay.php:130
+msgid "There was an error while processing your payment. Please try again later."
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:394
+#: src/Gateways/PaymentMethods/ApplePay.php:127
+#: assets/js/block/src/apple-pay.js:288
+msgid "Subtotal"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:395
+#: src/Gateways/PaymentMethods/ApplePay.php:128
+#: assets/js/block/src/apple-pay.js:305
+msgid "Shipping"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:396
+#: src/Gateways/PaymentMethods/ApplePay.php:129
+#: assets/js/block/src/apple-pay.js:314
+msgid "Tax"
+msgstr ""
+
+#: src/Gateways/ApplePayGateway.php:397
+#: src/Gateways/PaymentMethods/ApplePay.php:130
+#: assets/js/block/src/apple-pay.js:296
+msgid "Discount code:"
+msgstr ""
+
+#: src/Gateways/BankGateway.php:20
+msgid "Finix Bank/ACH"
+msgstr ""
+
+#: src/Gateways/BankGateway.php:21
+msgid "Accept direct Bank payments with Finix."
+msgstr ""
+
+#: src/Gateways/BankGateway.php:44
+msgid "Enable Bank Gateway"
+msgstr ""
+
+#: src/Gateways/BankGateway.php:53
+#: assets/js/block/src/bank.js:15
+msgid "Pay with Bank"
+msgstr ""
+
+#: src/Gateways/BankGateway.php:74
+msgid "Bank Payment Method"
+msgstr ""
+
+#: src/Gateways/BankGateway.php:75
+msgid "Take bank payments with Finix. You can configure available options on this page."
+msgstr ""
+
+#: src/Gateways/CardBankGateway.php:34
+msgid "Pay with Finix"
+msgstr ""
+
+#: src/Gateways/CardBankGateway.php:141
+#: src/Gateways/CardBankGateway.php:145
+#: src/Gateways/CardBankGateway.php:167
+#: src/Gateways/PaymentMethods/CardBankMethod.php:101
+#: src/Gateways/PaymentMethods/CardBankMethod.php:105
+#: assets/js/block/src/bank.js:95
+#: assets/js/block/src/card.js:95
+msgid "Full Name"
+msgstr ""
+
+#: src/Gateways/CardBankGateway.php:151
+#: src/Gateways/CardBankGateway.php:169
+#: src/Gateways/PaymentMethods/CardBankMethod.php:111
+msgid "Please enter a valid full name"
+msgstr ""
+
+#: src/Gateways/CardBankGateway.php:170
+#: assets/js/block/src/bank.js:106
+#: assets/js/block/src/card.js:106
+msgid "Please enter a valid city"
+msgstr ""
+
+#: src/Gateways/CardBankGateway.php:215
+msgid "Refund failed."
+msgstr ""
+
+#: src/Gateways/CardGateway.php:20
+msgid "Finix Cards"
+msgstr ""
+
+#: src/Gateways/CardGateway.php:21
+msgid "Accept Credit and Debit Cards with Finix."
+msgstr ""
+
+#: src/Gateways/CardGateway.php:53
+msgid "Enable Card Gateway"
+msgstr ""
+
+#: src/Gateways/CardGateway.php:62
+#: assets/js/block/src/card.js:15
+msgid "Pay with Card"
+msgstr ""
+
+#: src/Gateways/CardGateway.php:83
+msgid "Card Payment Method"
+msgstr ""
+
+#: src/Gateways/CardGateway.php:84
+msgid "Take card payments with Finix. You can configure available options on this page."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:72
+msgid "Environment Settings"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:77
+#: src/Gateways/FinixGateway.php:78
+msgid "Environment"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:80
+msgid "Place the payment gateway in sandbox mode using test API keys."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:82
+msgid "Sandbox"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:83
+msgid "Live"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:89
+msgid "Custom Source Tag"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:91
+msgid "This tag will be used to identify the source of the payment. It will be used to tag the payment details send to Finix."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:99
+msgid "Sandbox Details"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:104
+msgid "Sandbox Application ID"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:106
+msgid "This is the application ID provided on Finix dashboard -> developer menu by selecting sandbox environment"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:111
+msgid "Sandbox Username"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:115
+msgid "Sandbox Password"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:119
+msgid "Sandbox Merchant ID (USD)"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:121
+#: src/Gateways/FinixGateway.php:158
+msgid "This is the USD merchant ID that you can get on the Finix Merchant Accounts page"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:126
+msgid "Sandbox Merchant ID (CAD)"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:128
+#: src/Gateways/FinixGateway.php:165
+msgid "This is the CAD merchant ID that you can get on the Finix Merchant Accounts page"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:136
+msgid "Production Details"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:141
+msgid "Live Application ID"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:143
+msgid "This is the application ID provided on Finix dashboard -> developer menu by selecting live environment"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:148
+msgid "Live Username"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:152
+msgid "Live Password"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:156
+msgid "Live Merchant ID (USD)"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:163
+msgid "Live Merchant ID (CAD)"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:173
+msgid "Advanced Settings"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:178
+#: src/Gateways/FinixGateway.php:179
+msgid "Dispute Created"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:181
+msgid "If enabled, the plugin will listen to the dispute.created webhook event and update the order state if a dispute is created."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:186
+msgid "Disputes Order State"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:188
+msgid "Choose an order status when a payment dispute is received."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:194
+#: src/Gateways/FinixGateway.php:195
+msgid "ACH Return Created"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:197
+msgid "If enabled, the plugin will listen to ACH returns and update the order state if ACH return is created."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:202
+msgid "ACH Return Order State"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:204
+msgid "Choose an order status when an ACH Return is received."
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:259
+msgid "Plugin Options"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:260
+msgid "Cards"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:261
+msgid "Bank/ACH"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:263
+#: src/Gateways/GooglePayGateway.php:96
+msgid "Google Pay"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:275
+#: src/Gateways/FinixGateway.php:276
+msgid "Finix Payments"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:321
+msgid "Webhook Configuration"
+msgstr ""
+
+#. translators: %s - Finix Dashboard URL.
+#: src/Gateways/FinixGateway.php:327
+#, php-format
+msgid "To enable webhook, please add the following details to your <a href=\"%s\" target=\"_blank\">Finix Dashboard</a>:"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:343
+msgid "URL:"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:347
+msgid "Authentication Type:"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:348
+msgid "Basic"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:351
+msgid "Username:"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:355
+msgid "Password:"
+msgstr ""
+
+#: src/Gateways/FinixGateway.php:359
+msgid "Required Events:"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:32
+msgid "Finix Google Pay"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:33
+msgid "Accept Google Pay payments with Finix."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:38
+#: assets/js/block/src/google-pay.js:16
+msgid "Pay with Google Pay"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:87
+msgid "Enable Google Pay Gateway"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:107
+msgid "Button Color"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:109
+msgid "Choose color for the Google Pay button."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:111
+msgid "Default Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:112
+msgid "Black Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:113
+msgid "White Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:121
+msgid "Choose which type of Google Pay button you want."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:123
+msgid "Plain Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:124
+msgid "Buy Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:125
+msgid "Checkout Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:126
+msgid "Donate Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:127
+msgid "Subscribe Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:128
+msgid "Book Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:129
+msgid "Order Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:130
+msgid "Pay Button"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:136
+msgid "Button Corner Radius"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:138
+msgid "Choose the corner radius for the Google Pay button. Default is 5px."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:145
+msgid "This will be the merchant name shown to users when making a purchase via Google Pay."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:150
+msgid "Google Merchant ID"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:152
+msgid "This is the Google Merchant ID. You can find it on your Google Business console."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:167
+msgid "Google Pay Payment Method"
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:169
+msgid "Receive payments via Google Pay with Finix. You can configure the available options on this page."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:322
+msgid "There was an error processing the payment through Google Pay. Please try a different method or try again later."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:323
+msgid "Please enter a valid billing details."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:324
+msgid "Please enter a valid shipping details."
+msgstr ""
+
+#: src/Gateways/GooglePayGateway.php:325
+msgid "Missing details for Google Pay. Please contact the store owner."
+msgstr ""
+
+#: src/Payments.php:104
+msgid "Your order is currently on hold and will be processed once the payment is approved."
+msgstr ""
+
+#: src/Payments.php:119
+msgid "There was an error while processing this request."
+msgstr ""
+
+#: src/Payments.php:149
+msgid "Please review and fill in all the required information."
+msgstr ""
+
+#: src/Payments.php:175
+msgid "Please review and fill all the required information."
+msgstr ""
+
+#: src/Payments.php:188
+msgid "Invalid country provided."
+msgstr ""
+
+#: src/Payments.php:200
+msgid "Invalid state provided."
+msgstr ""
+
+#: src/Payments.php:230
+msgid "No shipping methods available for the provided address."
+msgstr ""
+
+#: src/Payments.php:250
+msgid "Shipping is required for this order."
+msgstr ""
+
+#: assets/js/block/src/apple-pay.js:270
+msgid "Please make sure shipping and billing information is correct."
+msgstr ""
+
+#: assets/js/block/src/bank.js:105
+#: assets/js/block/src/card.js:105
+msgid "Please enter a valid name"
+msgstr ""
+
+#: assets/js/block/src/bank.js:148
+#: assets/js/block/src/card.js:148
+msgid "Unfortunately, there was an error while loading the payment form. Please try again later."
+msgstr ""
+
+#: assets/js/block/src/bank.js:189
+#: assets/js/block/src/card.js:189
+msgid "Unfortunately, there was an error while initializing a payment form."
+msgstr ""
+
+#: assets/js/block/src/FinixGooglePay.js:81
+msgid "There was an error while processing the payment using Google Pay."
+msgstr ""
+
+#: assets/js/block/src/google-pay.js:117
+msgid "There was an error while initializing Google Pay. Please check all the details and try again."
+msgstr ""
+
+#: assets/js/block/src/google-pay.js:128
+msgid "Please make sure shipping and billing information is correct and then try again."
+msgstr ""

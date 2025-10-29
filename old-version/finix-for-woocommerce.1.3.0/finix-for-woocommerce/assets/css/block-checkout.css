@@ -1,0 +1,24 @@
+.finix-wc-form {
+  background: transparent;
+}
+.finix-wc-form > div {
+  min-width: 250px;
+  width: 90%;
+  max-width: 714px;
+}
+
+#radio-control-wc-payment-method-options-finix_gateway__label img,
+#radio-control-wc-payment-method-options-finix_bank_gateway__label img {
+  position: absolute;
+  right: 20px;
+  height: 30px;
+  width: auto;
+}
+
+#radio-control-wc-payment-method-options-finix_google_pay_gateway__label img {
+  position: absolute;
+  right: 20px;
+  height: 60px;
+  width: auto;
+  float: right;
+}

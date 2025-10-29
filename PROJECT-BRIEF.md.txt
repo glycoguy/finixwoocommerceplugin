@@ -1,0 +1,53 @@
+# Finix WooCommerce Subscriptions Plugin - v1.7.0 Implementation Project
+
+## Project Overview
+I'm building a WordPress plugin that integrates Finix payment API with WooCommerce Subscriptions.
+This plugin handles subscription payments using credit cards and Canadian EFT (bank transfers).
+
+## Current Status
+- Current version: v1.6.2
+- Target version: v1.7.0
+- Location of current code: `./current-plugin/`
+
+## What Needs to Be Done
+Implement ALL changes documented in `./reference-docs/DELIVERY-SUMMARY-v1.7.0.md`
+
+Key changes include:
+1. Add new Tags system (`class-finix-tags.php`)
+2. Update API class with structured responses and payment state handling
+3. Implement backend buyer identity creation
+4. Add fraud session ID support
+5. Enhance error handling throughout
+
+## Important Constraints
+- This plugin runs ALONGSIDE the regular Finix gateway (for non-subscription purchases)
+- Gateway ID must be different: `finix_subscriptions` (not `finix`)
+- Customers need to add descriptions that show on receipts
+- Must support both credit card and Canadian EFT formats
+
+## Reference Documentation
+All implementation details are in `./reference-docs/` folder:
+- DELIVERY-SUMMARY-v1.7.0.md (start here - overview of all changes)
+- ARCHITECTURAL-REVIEW-v1.7.0.md (technical review)
+- CRITICAL-FIXES-REQUIREDv1_7_0.md (must-fix issues)
+- EXPECTED-VS-ACTUAL-v1.7.0.md (detailed code comparisons)
+- QUICK-REFERENCE-v1.7.0.md (quick reference guide)
+
+## How to Approach This
+1. Read DELIVERY-SUMMARY-v1.7.0.md first to understand what needs to be done
+2. Work through changes file by file
+3. Test each major change before moving to the next
+4. Keep me informed of progress
+
+## Testing
+After implementation, I need to:
+- Upload plugin to WordPress test site
+- Run test transactions (card and bank)
+- Check WooCommerce logs
+- Verify tags appear in Finix Dashboard
+
+## Experience Level
+I'm a beginner coder. Please:
+- Explain what you're doing
+- Ask questions if anything is unclear
+- Provide clear instructions for any manual steps I need to do

@@ -1,0 +1,85 @@
+/**
+ * Finix Payment Form Styles
+ */
+
+.finix-payment-form {
+    margin: 20px 0;
+}
+
+.finix-payment-form .form-row {
+    margin-bottom: 15px;
+}
+
+.finix-payment-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.finix-payment-form input[type="text"]:focus {
+    border-color: #0071a1;
+    outline: none;
+    box-shadow: 0 0 0 1px #0071a1;
+}
+
+.finix-payment-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.finix-payment-form .required {
+    color: #e74c3c;
+}
+
+.finix-payment-form small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 12px;
+}
+
+#finix-card-number {
+    letter-spacing: 2px;
+}
+
+#finix-card-cvc {
+    letter-spacing: 1px;
+}
+
+/* Blocks checkout specific styles */
+.wc-block-components-text-input.finix-custom-description-wrapper {
+    margin-top: 1rem;
+}
+
+.finix-custom-description-wrapper label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.finix-custom-description-wrapper input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.finix-custom-description-wrapper small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .finix-payment-form .form-row-first,
+    .finix-payment-form .form-row-last {
+        width: 100%;
+        margin-right: 0;
+    }
+}
