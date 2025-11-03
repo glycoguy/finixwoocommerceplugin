@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('FINIX_WC_SUBS_VERSION', '1.8.1');
+define('FINIX_WC_SUBS_VERSION', '1.8.2');
 define('FINIX_WC_SUBS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FINIX_WC_SUBS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('FINIX_WC_SUBS_PLUGIN_BASENAME', plugin_basename(__FILE__));
