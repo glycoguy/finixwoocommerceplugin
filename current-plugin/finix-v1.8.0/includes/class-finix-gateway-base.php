@@ -695,14 +695,13 @@ abstract class WC_Gateway_Finix_Base extends WC_Payment_Gateway {
             Finix_Logger::error("Token not found in payment_data[{$token_key}]");
         }
 
-        // Save fraud session ID
-        $fraud_key = $this->id . '_fraud_session_id';
-        if (isset($payment_data[$fraud_key])) {
-            $fraud_value = sanitize_text_field($payment_data[$fraud_key]);
-            $order->update_meta_data('_' . $fraud_key, $fraud_value);
-            Finix_Logger::info("Saved fraud session ID to order meta");
+        // Save fraud session ID (without gateway prefix to match v1.3.0)
+        if (isset($payment_data['finix_fraud_session_id'])) {
+            $fraud_value = sanitize_text_field($payment_data['finix_fraud_session_id']);
+            $order->update_meta_data('_finix_fraud_session_id', $fraud_value);
+            Finix_Logger::info("Saved fraud session ID to order meta: {$fraud_value}");
         } else {
-            Finix_Logger::info("Fraud session ID not found in payment_data[{$fraud_key}]");
+            Finix_Logger::info("Fraud session ID not found in payment_data['finix_fraud_session_id']");
         }
 
         // Save custom description

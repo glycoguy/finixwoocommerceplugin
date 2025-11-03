@@ -195,7 +195,7 @@
                     // Prepare payment data
                     const paymentData = {
                         [gatewayId + '_token']: token,
-                        [gatewayId + '_fraud_session_id']: fraudSessionId,
+                        'finix_fraud_session_id': fraudSessionId,
                         finix_custom_description: receiptDescription,
                         finix_nonce: settings.nonce
                     };

@@ -3,7 +3,7 @@
  * Plugin Name: Finix WooCommerce Subscriptions
  * Plugin URI: https://3riversbiotech.com
  * Description: Custom payment gateway integrating Finix payment processing with WooCommerce Subscriptions for Canadian customers
- * Version: 1.8.1
+ * Version: 1.8.2
  * Author: KevinM
  * Author URI: https://3riversbiotech.com
  * Text Domain: finix-wc-subs
@@ -14,6 +14,7 @@
  * WC tested up to: 8.5
  *
  * Changelog:
+ * Version 1.8.2 - CRITICAL FIX: Fixed payment data structure to match working v1.3.0 plugin (removed gateway prefix from fraud_session_id)
  * Version 1.8.1 - TESTING ENHANCEMENT: Added custom logger with JavaScript console capture to bypass wp-debug memory issues
  * Version 1.8.0 - MAJOR REFACTOR: Two-gateway architecture (card/bank) matching official Finix plugin pattern, fixed blocks checkout, subscription support
  * Version 1.7.2 - CRITICAL FIX: Fixed payment data field name mismatch causing 400 error in blocks checkout
